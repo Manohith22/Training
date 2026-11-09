@@ -1,0 +1,17 @@
+{
+  "name": "Training, Program v1.1",
+  "short_name": "Training",
+  "description": "Manohith’s 12-week training program: today’s session, log and calendar.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F4F0",
+  "theme_color": "#2E3B98",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
