@@ -3,7 +3,7 @@
    the app opens online. Fonts and icons are cache-first. Offline, everything
    comes from the cache. Bump VERSION only if fonts or icons change. */
 const CACHE_PREFIX = "training-";
-const VERSION = CACHE_PREFIX + "v1.2.0";
+const VERSION = CACHE_PREFIX + "v1.3.0";
 const SHELL = [
   "./", "./index.html", "./manifest.webmanifest",
   "./anek-latin-latin.woff2", "./newsreader-latin.woff2",
@@ -37,6 +37,8 @@ async function page(event){
   const cached = await cache.match("./index.html");
   const net = fetch(event.request.url, { cache: "no-cache", credentials: "same-origin" }).then(async res => {
     if (res && res.ok){
+      // A page request can’t be answered with a redirected response, so rebuild it if GitHub redirected.
+      if (res.redirected) res = new Response(await res.blob(), { status: res.status, statusText: res.statusText, headers: res.headers });
       await cache.put("./index.html", res.clone());
       return res;
     }
@@ -56,7 +58,8 @@ self.addEventListener("fetch", event => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
-  if (req.mode === "navigate"){ event.respondWith(page(event)); return; }
+  // The page itself is always network-first, including the app’s own “is there a newer version?” check.
+  if (req.mode === "navigate" || /\/(index\.html)?$/.test(url.pathname)){ event.respondWith(page(event)); return; }
   event.respondWith(
     caches.match(req).then(hit => hit || fetch(req).then(res => {
       if (res && res.ok){ const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }

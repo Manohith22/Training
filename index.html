@@ -409,7 +409,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
 <a class="skip" href="#day">Skip to the day’s session</a>
 <div class="page">
   <header class="mast">
-    <p class="prog"><b>Program v1.1</b><span>10 Nov to 31 Jan</span></p>
+    <p class="prog"><b>Program v1.1</b><span id="progDates">10 Nov to 31 Jan</span></p>
     <nav class="mast-links" aria-label="Page">
       <a href="https://claude.ai/artifact/AjNNcqqiXbwvZiTh2hFznT" target="_blank" rel="noopener">Full plan</a>
       <button type="button" id="themeBtn" aria-label="Colour theme">Theme<b id="themeVal">Auto</b></button>
@@ -459,6 +459,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       <section id="block" tabindex="-1">
         <h2 id="blockH">Twelve weeks</h2>
         <p class="tally" id="tally"></p>
+        <div class="moverow" id="startRow"></div>
         <div class="cal" id="cal" role="grid" aria-labelledby="blockH"></div>
         <ul class="key">
           <li><i style="background:var(--lift)"></i>Lift</li>
@@ -520,7 +521,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
         </details>
       </div>
       <details class="changes">
-        <summary>What changed in v1.1</summary>
+        <summary>Program v1.1: what changed in the training</summary>
         <div class="in">
           <p>Added for flexibility, mobility and stamina. Strength days, runs, dates and rules are unchanged.</p>
           <ul class="chg">
@@ -530,10 +531,20 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
             <li><b>Cool-down, 8 min:</b> hip flexors and hamstrings twice, an adductor stretch, and 1 min of belly breathing. Lasting range needs roughly 5+ minutes of stretching per muscle a week; desk days tighten exactly these.</li>
             <li><b>Mobility flow, 15 min</b> on the weekly rest day, after the walk.</li>
             <li><b>Day 5:</b> gets back the mobility block from the full plan (this page had dropped it), now 10 min.</li>
-            <li><b>Stamina finisher</b> on Day 2 in weeks 7–9 and 11–12, only once the 20 Dec screening is reviewed and nothing in it changes the plan: 3 moderate rounds, 8 min. Day 2 is the one gym day without a run.</li>
+            <li><b>Stamina finisher</b> on Day 2 in weeks 7–9 and 11–12, only once the week-6 screening is reviewed and nothing in it changes the plan: 3 moderate rounds, 8 min. Day 2 is the one gym day without a run.</li>
             <li><b>Strides</b> also in week 11, same rule as weeks 7 and 9.</li>
             <li><b>CPR drill rounds</b> spelled out: 2 in weeks 1–4 and 10, 3 in weeks 5–8, 4 in weeks 9, 11 and 12.</li>
-            <li><b>New tests:</b> ankle, toe touch, deep squat and overhead reach (Thu 12 Nov), and minutes run without walking plus average heart rate (Sun 15 Nov). Both retests repeat them.</li>
+            <li><b>New tests:</b> ankle, toe touch, deep squat and overhead reach (Thursday of week 1), and minutes run without walking plus average heart rate (Sunday of week 1). Both retests repeat them.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="changes" style="margin-top:0;border-top:0">
+        <summary>App updates</summary>
+        <div class="in">
+          <ul class="chg">
+            <li><b>1.3.0</b> Start date can move: “Start a week later” shifts the whole program, tests and key dates. Share backup fixed (sent as a .txt, with a download as the fallback). The app now picks up new versions by itself when you reopen it. This list.</li>
+            <li><b>1.2.0</b> Honest log line (nothing assumed done, no default pain). After-session check: pain, effort, time, note. Weights are saved only when you enter them or tap Use. Move to tomorrow and Short session. Warning if a save fails. Restore can replace as well as merge, with undo.</li>
+            <li><b>1.1.0</b> First installable version: works offline, own icon, backups saved on the phone and shared weekly.</li>
           </ul>
         </div>
       </details>
@@ -556,7 +567,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       <div class="row">
         <button type="button" class="btn" id="exportBtn">Share backup</button>
         <button type="button" class="btn" id="importBtn">Restore from a file</button>
-        <input type="file" id="importFile" accept=".json,application/json,text/plain" hidden>
+        <input type="file" id="importFile" accept=".txt,.json,application/json,text/plain" hidden>
         <button type="button" class="btn" id="undoReplace" hidden>Undo the last replace</button>
       </div>
       <div class="restore" id="restore" hidden>
@@ -577,7 +588,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
   <footer class="foot">
     Form, images and today’s exact weights: open a chat in the Fitness project and say “gym today” or “run today”.
     <span class="kbd-hint">Keyboard: ← and → change the day, T jumps to today.</span>
-    <span class="ver">App version 1.2.0</span>
+    <span class="ver" id="ver"></span>
   </footer>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -589,10 +600,18 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
   /* =====================================================================
      PROGRAM DATA: copied verbatim from the original artifact (source of truth)
      ===================================================================== */
-  const START = new Date(2026,10,10);      // Tue 10 Nov 2026
-  const WEEK2 = new Date(2026,10,16);      // Mon 16 Nov 2026
-  const END   = new Date(2027,0,31);       // Sun 31 Jan 2027
-  const CAL0  = new Date(2026,10,9);       // Mon 9 Nov: first row of the calendar, the rest day before the start
+  const APP_VERSION = "1.3.0";
+  // v1.3: the whole program can start N whole weeks later. Every date below is written for the
+  // original 10 Nov start and moved by SHIFT weeks; nothing else in the page uses a fixed date.
+  const SHIFT_KEY = "training-start-shift", SHIFT_MAX = 26;
+  const validShift = n => typeof n==="number" && n>=0 && n<=SHIFT_MAX && Math.floor(n)===n;
+  const SHIFT = (function(){ try{ const n = parseInt(localStorage.getItem(SHIFT_KEY),10); return validShift(n) ? n : 0; }catch(e){ return 0; } })();
+  const sh = (y,m,d) => new Date(y,m,d+SHIFT*7);
+  const shKey = (y,m,d) => { const x = sh(y,m,d); return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); };
+  const START = sh(2026,10,10);      // Tue 10 Nov 2026
+  const WEEK2 = sh(2026,10,16);      // Mon 16 Nov 2026
+  const END   = sh(2027,0,31);       // Sun 31 Jan 2027
+  const CAL0  = sh(2026,10,9);       // Mon 9 Nov: first row of the calendar, the rest day before the start
   const MON  = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const MONL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   const WD   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -684,10 +703,11 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
   const cprRounds = w => LIGHT[w] ? 2 : w<=4 ? 2 : w<=8 ? 3 : 4;
 
   const DATES = [
-    {k:"2026-12-06", d:"6 Dec",  t:"Retest at the end of the lighter week; the SR job starts that week"},
-    {k:"2026-12-20", d:"20 Dec", t:"Screening labs due: ECG, BP both arms, lipids, HbA1c, Lp(a), sleep screen. Strides start only once the results are reviewed and nothing in them changes the plan"},
-    {k:"2027-01-31", d:"31 Jan", t:"10 km easy, then the final retest"}
+    {k:shKey(2026,11,6),  t:"Retest at the end of the lighter week"+(SHIFT ? "" : "; the SR job starts that week")},
+    {k:shKey(2026,11,20), t:"Screening labs due: ECG, BP both arms, lipids, HbA1c, Lp(a), sleep screen. Strides start only once the results are reviewed and nothing in them changes the plan"},
+    {k:shKey(2027,0,31),  t:"10 km easy, then the final retest"}
   ];
+  DATES.forEach(x=>{ const p = x.k.split("-"); x.d = (+p[2])+" "+MON[+p[1]-1]; });
   const MS = {}; DATES.forEach(x=>MS[x.k]=x);
 
   /* =====================================================================
@@ -728,7 +748,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     if (s.type==="gym") return L[s.day].name + (s.run?" + run":"");
     if (s.type==="long") return s.test ? "Run test" : "Long run";
     if (s.type==="sat") return "Rest";
-    if (s.type==="travel") return "Travel";
+    if (s.type==="travel") return "Before the start";
     if (s.type==="after") return "Done";
     return "Rest";
   }
@@ -852,6 +872,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       if (!MOVE_RE.test(k)) continue;
       const to = m[k][0], from = k.slice(5);
       if (!to || to===from) continue;
+      if (!isSession(baseSlot(fromKey(from)))) continue;   // a move left over from a different start date
       if (best[to]){ if (best[to][1] >= m[k][1]) continue; delete out[best[to][0]]; }
       best[to] = [from, m[k][1]]; out[from] = to; inc[to] = from;
     }
@@ -870,8 +891,8 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     while (true){
       if (dn(c) > nE) return {err:"There’s no free day left in this block to move it to."};
       const s = slot(c);
+      if (Store.get("done-"+key(c))) return {err:nice(c)+" is already marked done. Unmark it first if you want to move a session onto it."};
       if (!isSession(s)) break;
-      if (Store.get("done-"+key(c))) return {err:"The next session is already marked done, so this one can’t shift onto it."};
       chain.push(c); c = addDays(c,1);
       if (chain.length > 7) return {err:"Couldn’t find a free day within a week."};
     }
@@ -891,7 +912,10 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
   function putBack(origin){
     const o = fromKey(origin);
     if (slot(o).type!=="moved") return "That day has another session on it now. Put that one back first.";
-    Store.setVal("move-"+origin, ""); MV = null; return "";
+    // Undo the whole shift: sessions that were pushed along behind this one go back too.
+    Store.setVal("move-"+origin, ""); MV = null;
+    for (let i=1; i<=10; i++){ const t = addDays(o,i); if (slot(t).type==="moved"){ Store.setVal("move-"+key(t), ""); MV = null; } }
+    return "";
   }
 
   /* =====================================================================
@@ -977,10 +1001,11 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
   const T_STRENGTH = ["pushups","hang","pullup","plank","splankL","splankR"], T_CPR = ["cprEffort","cprElbows"],
         T_MOB = ["ankleL","ankleR","toeTouch","deepSquat","overhead"], T_RUN = ["runCont","runHR"];
   const TF_ALL = T_STRENGTH.concat(T_CPR, T_MOB, T_RUN);
-  const REF = {pushups:"2026-11-10",hang:"2026-11-10",pullup:"2026-11-10",plank:"2026-11-11",splankL:"2026-11-11",splankR:"2026-11-11",cprEffort:"2026-11-13",cprElbows:"2026-11-13",
-               ankleL:"2026-11-12",ankleR:"2026-11-12",toeTouch:"2026-11-12",deepSquat:"2026-11-12",overhead:"2026-11-12",runCont:"2026-11-15",runHR:"2026-11-15"};
-  const MOB_DAY = "2026-11-12", RUNTEST_DAY = "2026-11-15";
-  const RETEST = {"2026-12-06":true,"2027-01-31":true};
+  const W1 = n => shKey(2026,10,n);   // a date in week 1
+  const REF = {pushups:W1(10),hang:W1(10),pullup:W1(10),plank:W1(11),splankL:W1(11),splankR:W1(11),cprEffort:W1(13),cprElbows:W1(13),
+               ankleL:W1(12),ankleR:W1(12),toeTouch:W1(12),deepSquat:W1(12),overhead:W1(12),runCont:W1(15),runHR:W1(15)};
+  const MOB_DAY = W1(12), RUNTEST_DAY = W1(15);
+  const RETEST = {}; RETEST[shKey(2026,11,6)] = true; RETEST[shKey(2027,0,31)] = true;
   const testKey = (d,id) => "test-"+key(d)+"-"+id;
   const UNIT_PAD = {reps:46,s:24,"of 10":50,cm:34,min:38,bpm:42};
   function fieldsHTML(d,ids,withRef){
@@ -1080,8 +1105,8 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       flow.push(step("c-rest","Walk","30–40 min","<p>Easy pace. Get to "+stepsFloor+" steps.</p>"));
       flow.push(step("c-food","Eat","","<p>Protein 120 g or more across the day. No milkshakes or sugary drinks.</p>"));
     } else if (s.type==="travel"){
-      title = "Travel"; kind = "Program starts Tue 10 Nov";
-      lede = "No sessions while you’re away. Just keep moving.";
+      title = "Before the start"; kind = "Program starts "+nice(START);
+      lede = "No sessions yet. Just keep moving.";
       flow.push(step("c-rest","Walk","at least 7,000 steps","<p>Any walking counts. Stairs over lifts.</p>"));
       flow.push(step("c-food","Eat","","<p>Protein at every meal. No milkshakes or sugary drinks.</p>"));
       // Original showed this on every Monday before the start; only Mon 9 Nov is the day before Day 1.
@@ -1175,15 +1200,36 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     $("tags").innerHTML = tags.join("");
     $("tags").hidden = !tags.length;
     const ms = MS[key(d)];
-    $("moveRow").innerHTML = moveRowHTML(d,s,short);
     $("milestone").innerHTML = ms ? '<p class="milestone"><b>Key date, '+ms.d+'</b>'+ms.t+'</p>' : "";
     $("flow").innerHTML = flow.join("");
     $("flow").hidden = !flow.length;
     updateCounts();
   }
 
+  const anyDone = () => { const m = Store.entries(); for (const k in m) if (k.slice(0,5)==="done-" && m[k][0]===1) return true; return false; };
+  function startBtns(){
+    return (SHIFT<SHIFT_MAX ? '<button type="button" class="btn" data-shift="1">Start a week later</button>' : '')+
+           (SHIFT>0 ? '<button type="button" class="btn" data-shift="-1">Start a week earlier</button>' : '');
+  }
+  function renderStart(){
+    $("startRow").innerHTML = startBtns()+'<p class="movenote">Starts '+nice(START)+'. Not at the gym yet? Push the whole program back a week at a time, so week 1 begins when you do.</p>';
+  }
+  function setShift(n){
+    if (!validShift(n) || n===SHIFT) return;
+    const ns = addDays(START,(n-SHIFT)*7);
+    if (!window.confirm("Start the program on "+longDate(ns)+"?\n\nEvery week, test day and key date moves with it. Anything already logged stays on the date you logged it.")) return;
+    try{ localStorage.setItem(SHIFT_KEY, String(n)); }catch(e){ toast("Couldn’t save that. Free up some phone storage and try again."); return; }
+    location.reload();
+  }
+  document.addEventListener("click",e=>{ const b = e.target.closest && e.target.closest("button[data-shift]"); if (b) setShift(SHIFT + (+b.dataset.shift)); });
   function moveRowHTML(d,s,short){
     const done = Store.get("done-"+key(d));
+    if (s.type==="travel") return startBtns();
+    if (weekOf(d)===1 && !s.from && s.type!=="moved" && !anyDone())
+      return (isSession(s) && s.type==="gym" ? '<button type="button" class="btn" data-act="short" aria-pressed="'+short+'">Short session</button>' : '')+
+        (isSession(s) ? '<button type="button" class="btn" data-act="push">Move to tomorrow</button>' : '')+
+        '<button type="button" class="btn" data-shift="1">Not started? Start a week later</button>'+
+        '<p class="movenote">Haven’t begun yet: “Start a week later” moves the whole program, so week 1 begins when you do. Missed just one day: use “Move to tomorrow”.</p>';
     if (s.type==="moved") return '<button type="button" class="btn" data-act="goto" data-k="'+s.to+'">Go to '+nice(fromKey(s.to))+'</button>'+
       '<button type="button" class="btn" data-act="putback" data-k="'+key(d)+'">Put it back here</button>';
     if (!isSession(s) || done) return "";
@@ -1224,7 +1270,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     $("l1").textContent = (isT ? "Today, " : "") + nice(d);
     let l2;
     if (w>=1) l2 = "Week "+w+" of 12"+(LIGHT[w]?", lighter":"");
-    else if (dn(d)<nS) l2 = "Starts Tue 10 Nov";
+    else if (dn(d)<nS) l2 = "Starts "+nice(START);
     else l2 = "After the block";
     $("l2").textContent = l2;
     const tb = $("todayBtn");
@@ -1314,7 +1360,9 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     $("dates").innerHTML = DATES.map(x=>'<li><button type="button" data-k="'+x.k+'" aria-label="'+esc(longDate(fromKey(x.k))+": "+x.t)+'"><span class="dd" aria-hidden="true">'+x.d+'</span><span class="dx" aria-hidden="true">'+x.t+'</span></button></li>').join("");
   }
 
-  function renderChrome(){ renderBar(); renderStrip(); renderCal(); renderDoneBar(); updateCounts(); }
+  // Rebuilt with the chrome so the buttons follow “done” and other changes straight away.
+  function renderMoveRow(){ const s = slot(view); $("moveRow").innerHTML = moveRowHTML(view, s, s.type==="gym" && Store.val("mode-"+key(view))==="short"); }
+  function renderChrome(){ renderBar(); renderStrip(); renderCal(); renderDoneBar(); renderMoveRow(); updateCounts(); }
   // Apply changes from another device without rebuilding the day, so typing and focus aren’t interrupted.
   function softRefresh(){
     MV = null;
@@ -1538,10 +1586,10 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     const when = d===0 ? "today" : d===1 ? "yesterday" : d+" days ago";
     return "Last backup "+when+"."+(d>=7 ? " Time for this week’s: tap Share backup and send it to Claude." : "");
   }
-  function payload(){ return JSON.stringify({schema:"training-log-v2", exportedAt:new Date().toISOString(), entries:Store.entries()}); }
+  function payload(){ return JSON.stringify({schema:"training-log-v2", exportedAt:new Date().toISOString(), startShift:SHIFT, entries:Store.entries()}); }
 
   $("exportBtn").addEventListener("click",async ()=>{
-    const data = payload(), filename = "training-log-"+key(today())+".json";
+    const data = payload(), filename = "training-log-"+key(today())+".txt";
     const dl = await dlP;
     if (dl){
       try{ await dl.save({filename, data}); markBackup(); toast("Backup saved"); }
@@ -1551,19 +1599,21 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       }
       return;
     }
+    // Phones only share a few file types; .json is refused, plain text is allowed.
+    // If sharing still fails for any reason other than you cancelling, the file is downloaded instead.
+    let shareFailed = false;
     try{
-      const file = new File([data], filename, {type:"application/json"});
+      const file = new File([data], filename, {type:"text/plain"});
       if (navigator.canShare && navigator.canShare({files:[file]})){
-        try{ await navigator.share({files:[file], title:"Training log backup"}); markBackup(); toast("Backup shared"); }
-        catch(e){ toast(e && e.name==="AbortError" ? "Backup not shared" : "Sharing failed. Try copying the backup as text."); }
-        return;
+        try{ await navigator.share({files:[file], title:"Training log backup"}); markBackup(); toast("Backup shared"); return; }
+        catch(e){ if (e && e.name==="AbortError"){ toast("Backup not shared"); return; } shareFailed = true; }
       }
-    }catch(e){}
+    }catch(e){ shareFailed = true; }
     try{
-      const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([data],{type:"application/json"}));
+      const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([data],{type:"text/plain"}));
       a.download=filename; document.body.appendChild(a); a.click(); a.remove();
       setTimeout(()=>URL.revokeObjectURL(a.href),1500);
-      markBackup(); toast("Backup downloaded");
+      markBackup(); toast(shareFailed ? "Sharing wasn’t available, so the backup is in your Downloads" : "Backup downloaded");
     }catch(e){ $("textBackup").open = true; toast("Download blocked. Copy the backup as text."); }
   });
 
@@ -1586,7 +1636,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       for (const k in o.entries){ if (TICK_RE.test(k) && o.entries[k]==="1" && !Store.get(k)){ entries[k]=[1,t]; ticks++; } }
     } else throw new Error("That backup format isn’t supported.");
     const when = o.exportedAt && !isNaN(Date.parse(o.exportedAt)) ? new Date(o.exportedAt) : null;
-    return {entries, ticks, nums, when, schema:o.schema};
+    return {entries, ticks, nums, when, schema:o.schema, startShift: validShift(o.startShift) ? o.startShift : null};
   }
   function offerRestore(text){
     try{
@@ -1615,6 +1665,7 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     try{ localStorage.setItem(SAFE_KEY, payload()); }
     catch(e){ toast("Couldn’t keep a safety copy, so nothing was replaced. Share a backup first."); return; }
     const good = Store.replace(pending.entries);
+    adoptShift(pending.startShift);
     pending=null; $("restore").hidden=true; $("pasteBox").value="";
     render(); schedulePush(); showUndo();
     toast(good ? "Log replaced. Undo is below if that was a mistake." : "Replace didn’t save. Share a backup now.");
@@ -1623,13 +1674,21 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
     let o=null; try{ o = JSON.parse(localStorage.getItem(SAFE_KEY)||"null"); }catch(e){}
     if (!o || !o.entries){ showUndo(); return; }
     Store.replace(o.entries);
+    adoptShift(validShift(o.startShift) ? o.startShift : null);
     try{ localStorage.removeItem(SAFE_KEY); }catch(e){}
     render(); schedulePush(); showUndo(); toast("Back to how it was before the replace");
   });
   showUndo();
+  function adoptShift(n){
+    if (n===null || n===SHIFT) return false;
+    try{ localStorage.setItem(SHIFT_KEY, String(n)); }catch(e){ return false; }
+    setTimeout(()=>location.reload(), 1200); return true;
+  }
   $("restoreGo").addEventListener("click",()=>{
     if (!pending) return;
+    const wasEmpty = Object.keys(Store.entries()).length===0, ps = pending.startShift;
     const n = Store.merge(pending.entries);
+    if (wasEmpty) adoptShift(ps);
     pending=null; $("restore").hidden=true; $("pasteBox").value="";
     render(); schedulePush();
     toast(n ? "Restored "+n+" changes" : "Nothing new in that backup");
@@ -1690,6 +1749,9 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
   /* =====================================================================
      START
      ===================================================================== */
+  $("ver").textContent = "App version "+APP_VERSION;
+  $("progDates").textContent = START.getDate()+" "+MON[START.getMonth()]+" to "+END.getDate()+" "+MON[END.getMonth()];
+  renderStart();
   buildCal(); renderDates(); render(); setStatus();
   if (isDesk()) document.querySelectorAll(".rules-grid details").forEach(d=>d.open=true);
   initSync();
@@ -1705,6 +1767,19 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
       if (ev.data && ev.data.type==="updated") toast("New version downloaded. Close and reopen the app to use it.");
     });
   }
+  // An installed app can sit open for days. When it comes back to the front (at most every 30 min),
+  // look for a newer index.html and reload into it, unless you’re in the middle of typing.
+  let lastCheck = Date.now();
+  document.addEventListener("visibilitychange",async ()=>{
+    if (document.visibilityState!=="visible" || Date.now()-lastCheck < 18e5 || location.protocol!=="https:") return;
+    lastCheck = Date.now();
+    try{
+      const r = await fetch("./index.html",{cache:"no-cache"}); if (!r.ok) return;
+      const m = (await r.text()).match(/const APP_VERSION = "([\d.]+)"/);
+      const a = document.activeElement, typing = a && (a.tagName==="INPUT" || a.tagName==="TEXTAREA");
+      if (m && m[1]!==APP_VERSION && !typing) location.reload();
+    }catch(e){}
+  });
   if (navigator.storage && navigator.storage.persist){
     (navigator.storage.persisted ? navigator.storage.persisted() : Promise.resolve(false))
       .then(p => p ? true : navigator.storage.persist())
