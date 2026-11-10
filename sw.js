@@ -2,7 +2,8 @@
    The page (index.html) is network-first: a new upload shows up the next time
    the app opens online. Fonts and icons are cache-first. Offline, everything
    comes from the cache. Bump VERSION only if fonts or icons change. */
-const VERSION = "training-v1.1.0";
+const CACHE_PREFIX = "training-";
+const VERSION = CACHE_PREFIX + "v1.2.0";
 const SHELL = [
   "./", "./index.html", "./manifest.webmanifest",
   "./anek-latin-latin.woff2", "./newsreader-latin.woff2",
@@ -17,12 +18,13 @@ self.addEventListener("install", e => {
 self.addEventListener("activate", e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k))))
+      // Only this app’s old caches: other apps on the same github.io origin keep theirs.
+      .then(keys => Promise.all(keys.filter(k => k.startsWith(CACHE_PREFIX) && k !== VERSION).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
 
-async function notifyIfChanged(fresh, old, clientId){
+async function notifyIfChanged(fresh, old){
   if (!old) return;
   const [a, b] = await Promise.all([fresh.clone().text(), old.text()]);
   if (a === b) return;
