@@ -1,12 +1,13 @@
 /* Training app service worker.
    The page (index.html) is network-first: a new upload shows up the next time
    the app opens online. Fonts and icons are cache-first. Offline, everything
-   comes from the cache. Bump VERSION only if fonts or icons change. */
+   comes from the cache. Bump VERSION when fonts, icons or exercise-pics.js change. */
 const CACHE_PREFIX = "training-";
-const VERSION = CACHE_PREFIX + "v1.3.0";
+const VERSION = CACHE_PREFIX + "v1.4.0";
 const SHELL = [
   "./", "./index.html", "./manifest.webmanifest",
   "./anek-latin-latin.woff2", "./newsreader-latin.woff2",
+  "./exercise-pics.js",
   "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png",
   "./apple-touch-icon.png", "./favicon-32.png"
 ];
