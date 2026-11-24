@@ -3,7 +3,7 @@
    the app opens online. Fonts and icons are cache-first. Offline, everything
    comes from the cache. Bump VERSION when fonts, icons or exercise-pics.js change. */
 const CACHE_PREFIX = "training-";
-const VERSION = CACHE_PREFIX + "v1.4.0";
+const VERSION = CACHE_PREFIX + "v1.5.0";
 const SHELL = [
   "./", "./index.html", "./manifest.webmanifest",
   "./anek-latin-latin.woff2", "./newsreader-latin.woff2",

@@ -491,10 +491,65 @@ body.timing .toast{bottom:calc(var(--bar-h) + 96px + env(safe-area-inset-bottom,
 .howto .credit{font-family:var(--sans);font-size:13px;color:var(--ink-3);margin-top:12px}
 body.sheet-open{overflow:hidden}
 
+/* v1.5 */
+.mast{flex-wrap:wrap}
+.mast-links{flex-wrap:wrap;justify-content:flex-end}
+.ex{grid-template-areas:"box n rx" "box ld ld" "box swp swp" "box last last" "box sets sets"}
+.ex .swp{grid-area:swp;justify-self:start;font-size:14px;line-height:1.35;color:var(--ink);background:var(--food-t);padding:4px 8px;border-radius:6px;margin-top:4px}
+.painx{grid-column:1 / -1;margin-top:6px}
+.step p.tg{font-family:var(--sans);font-size:15px;font-weight:650;color:var(--ink-2);margin:14px 0 0;line-height:1.2}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips button{min-height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--rule-2);background:transparent;font-weight:600;font-size:14px;line-height:1.2;text-align:left}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rule{margin:10px 0 0;padding:10px 12px;border-left:3px solid var(--c);background:var(--sunk);border-radius:0 8px 8px 0;font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--ink)}
+.step .rule{color:var(--ink)}
+.rule b{font-family:var(--sans)}
+.advice{margin:10px 0 0;padding:10px 12px;border-left:3px solid var(--food);background:var(--food-t);border-radius:0 8px 8px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;max-width:560px}
+.advice p.a{margin:0;flex-basis:100%;font-family:var(--sans);font-size:16px;line-height:1.45;color:var(--ink)}
+.advice.red{border-color:var(--run);background:var(--run-t)}
+.advice .btn{background:var(--surface)}
+.bodylog summary{cursor:pointer;font-size:15px;font-weight:600;color:var(--ink-2);min-height:40px;display:flex;align-items:center}
+.lib,.prog2{margin:72px auto 0;max-width:720px}
+.lib h2,.prog2 h2{font-weight:720;font-stretch:75%;font-size:36px;line-height:1;margin:0 0 6px;letter-spacing:-.005em}
+.sub2{font-size:18px;font-weight:650;margin:24px 0 4px;line-height:1.25}
+.lib .search{width:100%;height:48px;border:1px solid var(--rule-2);border-radius:10px;background:var(--surface);color:var(--ink);padding:0 12px;font-size:16px;margin:4px 0 4px}
+.lib .search:focus{outline:2px solid var(--focus);outline-offset:1px;border-color:transparent}
+.liblist{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--rule)}
+.libitem{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:10px 4px;border-top:1px solid var(--rule)}
+.libitem b{display:block;font-weight:600;font-size:17px;line-height:1.3}
+.libitem span{display:block;font-size:14px;line-height:1.35;color:var(--ink-3)}
+.libitem:hover b{text-decoration:underline}
+.libitem:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+.prog2 select{height:44px;max-width:100%;border:1px solid var(--rule-2);border-radius:8px;background:var(--surface);color:var(--ink);padding:0 10px;font:600 16px/1 var(--sans)}
+.ptable{width:100%;max-width:600px;border-collapse:collapse;font-size:15px;line-height:1.35;margin-top:8px}
+.ptable th,.ptable td{text-align:left;vertical-align:top;padding:7px 10px 7px 0;border-top:1px solid var(--rule)}
+.ptable thead th{font-size:14px;font-weight:650;color:var(--ink-3)}
+.ptable tbody th{font-weight:600}
+.spark{display:block;width:100%;max-width:520px;height:auto;margin-top:10px}
+.spark polyline{fill:none;stroke:var(--lift);stroke-width:2;stroke-linejoin:round}
+.spark circle{fill:var(--lift)}
+.spark text{font:600 11px var(--sans);fill:var(--ink-3)}
+.empty{font-size:15px;color:var(--ink-3);margin:4px 0 0}
+.howto .media .fl{position:absolute;left:8px;top:8px;z-index:1;font:600 13px/1 var(--sans);background:rgba(10,12,30,.62);color:#fff;padding:4px 7px;border-radius:5px}
+.howto .media .fl.a{animation:flipa 2.6s infinite}
+.howto .media .fl.b{animation:flip 2.6s infinite}
+@keyframes flipa{0%,38%{opacity:1}50%,88%{opacity:0}100%{opacity:1}}
+.howto .media.both{display:flex;aspect-ratio:auto}
+.howto .media.both img{position:static;width:50%;height:auto;animation:none;opacity:1}
+.howto .media.both .fl{animation:none;opacity:1}
+.howto .media.both .fl.b{left:calc(50% + 8px)}
+.howto .swapbox{margin-top:10px}
+.rt.seq{flex-wrap:wrap}
+.rt.seq .rt-t{flex-basis:100%}
+.rt.seq .rt-l{max-width:none}
+body.timing.seqing{padding-bottom:calc(var(--bar-h) + 150px)}
+body.seqing .toast{bottom:calc(var(--bar-h) + 150px + env(safe-area-inset-bottom,0px))}
+@media (min-width:1024px){.lib,.prog2{max-width:none}body.timing.seqing{padding-bottom:150px}body.seqing .toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
-  .daybar,.mast-links,.rail,.data,.donebar,.toast,.skip,.week,.rt,.timer-row{display:none!important}
+  .daybar,.mast-links,.rail,.data,.donebar,.toast,.skip,.week,.rt,.timer-row,.prog2,.lib{display:none!important}
   .layout{display:block}.sheet{max-width:none}
   .ref details{display:block}.ref details > *{display:block}
 }
@@ -506,6 +561,8 @@ body.sheet-open{overflow:hidden}
   <header class="mast">
     <p class="prog"><b>Program v1.1</b><span id="progDates">10 Nov to 31 Jan</span></p>
     <nav class="mast-links" aria-label="Page">
+      <a href="#progress">Progress</a>
+      <a href="#library">Library</a>
       <a href="https://claude.ai/artifact/AjNNcqqiXbwvZiTh2hFznT" target="_blank" rel="noopener">Full plan</a>
       <button type="button" id="themeBtn" aria-label="Colour theme">Theme<b id="themeVal">Auto</b></button>
     </nav>
@@ -546,6 +603,7 @@ body.sheet-open{overflow:hidden}
 <div class="rt" id="rt" role="timer" aria-labelledby="rtL" hidden>
   <div class="rt-t"><button type="button" class="rt-l" id="rtL" tabindex="-1">Rest</button><span class="rt-n" id="rtN">0:00</span></div>
   <button type="button" id="rtPlus" aria-label="Add 15 seconds">+15 s</button>
+  <button type="button" id="rtNext" hidden>Next</button>
   <button type="button" id="rtStop">Stop</button>
 </div>
 <div class="vh" id="rtLive" aria-live="assertive"></div>
@@ -572,6 +630,20 @@ body.sheet-open{overflow:hidden}
       </section>
     </aside>
   </div>
+
+  <section class="prog2" id="progress" aria-labelledby="progH" tabindex="-1">
+    <h2 id="progH">Progress</h2>
+    <p class="tally">Fills in as you log. Most useful after 2 to 3 weeks.</p>
+    <div id="progBody"></div>
+  </section>
+
+  <section class="lib" id="library" aria-labelledby="libH" tabindex="-1">
+    <h2 id="libH">Exercise library</h2>
+    <p class="tally">Every move in the program. Tap one for how to do it and a picture.</p>
+    <label for="libQ" class="vh">Search the exercise library</label>
+    <input type="search" id="libQ" class="search" placeholder="Search: squat, shoulder, hamstring…" autocomplete="off" enterkeyhint="search">
+    <div id="libList"></div>
+  </section>
 
   <section class="ref" aria-label="Rules">
     <div class="rules">
@@ -639,6 +711,7 @@ body.sheet-open{overflow:hidden}
         <summary>App updates</summary>
         <div class="in">
           <ul class="chg">
+            <li><b>1.5.0</b> Exercise library with search. Progress: each exercise’s history, test results, weight, waist and runs. Log a swap from the how-to sheet. Weight and waist fields. Minutes, distance and heart rate for runs and walks. Pain 4 or more asks where and shows what to do. Last night’s sleep at the top of training days, with the matching rule. Share backup from Sunday’s check-in. Photos label Start and End, or show both side by side. Redrawn open book, tibialis raise and tuck L-sit. Guided timer: +15 s and Next. Day 1: skull-crusher drops to 4 kg; 3 single pull-ups added. Fixed: session clock on old days, Full sets in a lighter week, guided timer after the screen locks, replace-restore with a 3-, 2- or 1-day week, and “I did it” now opens the day so you can fill it in.</li>
             <li><b>1.4.0</b> Tap any exercise, warm-up move or stretch for how to do it, with a picture. Per-set kg and reps, a 2- or 3-set day, extra sets, and an auto rest timer. Quick or full warm-up, and guided warm-up and cool-down timers. Pre-gym food by gym time (morning or evening) with more cheap options. Speed and incline for runs and walks. Days this week (4, 3, 2, 1 or 0) rebuilds the week. Skipped days, a catch-up card and Do it today. Session clock. Bigger, multi-line notes.</li>
             <li><b>1.3.0</b> Start date can move: “Start a week later” shifts the whole program, tests and key dates. Share backup fixed (sent as a .txt, with a download as the fallback). The app now picks up new versions by itself when you reopen it. This list.</li>
             <li><b>1.2.0</b> Honest log line (nothing assumed done, no default pain). After-session check: pain, effort, time, note. Weights are saved only when you enter them or tap Use. Move to tomorrow and Short session. Warning if a save fails. Restore can replace as well as merge, with undo.</li>
@@ -684,7 +757,7 @@ body.sheet-open{overflow:hidden}
   </section>
 
   <footer class="foot">
-    Not sure how a move goes? Tap its name for the steps and a picture. Today’s exact weights and anything else: open a chat in the Fitness project and say “gym today” or “run today”.
+    Not sure how a move goes? Tap its name, or search the <a href="#library">exercise library</a>, for the steps and a picture. Today’s exact weights and anything else: open a chat in the Fitness project and say “gym today” or “run today”.
     <span class="kbd-hint">Keyboard: ← and → change the day, T jumps to today.</span>
     <span class="ver" id="ver"></span>
   </footer>
@@ -699,7 +772,7 @@ body.sheet-open{overflow:hidden}
   /* =====================================================================
      PROGRAM DATA: copied verbatim from the original artifact (source of truth)
      ===================================================================== */
-  const APP_VERSION = "1.4.0";
+  const APP_VERSION = "1.5.0";
   // v1.3: the whole program can start N whole weeks later. Every date below is written for the
   // original 10 Nov start and moved by SHIFT weeks; nothing else in the page uses a fixed date.
   const SHIFT_KEY = "training-start-shift", SHIFT_MAX = 26;
@@ -731,9 +804,10 @@ body.sheet-open{overflow:hidden}
       ["Incline dumbbell press","3 × 8–10","7.5 kg each"],
       ["Wide-grip lat pulldown","3 × 8–10","hole 4, note the kg"],
       {pair:[["Dumbbell lateral raise","3 × 10–12","4 kg"],["Standing calf raise","3 × 12–15","bodyweight, on a step"]]},
-      {pair:[["Hammer curl","3 × 8–10","7.5 kg"],["Skull-crusher","3 × 8–10","5 kg"]]},
+      {pair:[["Hammer curl","3 × 8–10","7.5 kg"],["Skull-crusher","3 × 8–10","4 kg"]]},
       ["Dead bug","3 × 8 each side","bodyweight"],
-      ["Dead hang","2 × up to 30 s","bodyweight"]]},
+      ["Dead hang","2 × up to 30 s","bodyweight"],
+      ["Single pull-ups","3 × 1","bodyweight, 90 s between"]]},
     D2:{name:"Day 2",kind:"Row, press, squat",items:[
       ["Barbell row","3 × 6–8","empty bar, 20 kg"],
       ["Seated dumbbell press, palms facing","3 × 8–10","7.5 kg each"],
@@ -792,6 +866,7 @@ body.sheet-open{overflow:hidden}
       ["Farmer’s carry","3 × 30–40 m","15 kg each hand"],
       ["Plank","2 × 30–45 s","bodyweight"]]}
   };
+  const STEP_DOWN = {"Skull-crusher":{kg:4, before:"2026-11-25", why:"Last time’s last set was 6 reps, under 8: one step down to 4 kg (or the cable rope pushdown)."}};
   const TAG = {D1:"D1",D2:"D2",D3:"D3",D4:"D4",D5:"D5",A:"Session A",B:"Session B",ONE:"1-day session"};
   // 3-day week: “Add face pulls and calf raises to Day 2”
   const D2_PLUS = {pair:[["Cable face pull","3 × 12–15","light"],["Standing calf raise","3 × 12–15","bodyweight, on a step"]]};
@@ -974,6 +1049,9 @@ body.sheet-open{overflow:hidden}
     "Pull-up ladder":{c:"c",pic:"Pull-up",m:"Lats, mid back, biceps, grip.",
       s:["Your rung, easiest first: dead hang → scapular pull-up (straight arms, pull the shoulders down 2–3 cm) → assisted pull-up → 5-second lowering from the top → strict pull-up.","Do the sets at your current rung.","Move up a rung when 3 sets are clean."],
       k:["Full range: arms straight at the bottom.","Stop if the left shoulder pinches."],sw:"Lat pulldown, 3 × 8–10."},
+    "Single pull-ups":{c:"c",pic:"Pull-up",m:"Lats, mid back, biceps, grip. Practises the full pull-up while your hang builds.",
+      s:["Hang from the bar, hands just wider than your shoulders, palms facing away, arms straight.","Pull your shoulders down, then pull until your chin is over the bar.","Lower slowly (2–3 s) to straight arms, then step down.","Rest 90 s before the next single."],
+      k:["One clean rep each time: no kicking or swinging.","Can’t get one today? Step up on a box and do a 5-second lowering instead, and log it as 0.","Stop if the left shoulder pinches."],sw:"Assisted pull-up machine, or 5-second lowerings from the top."},
     "Dip ladder":{c:"c",pic:"Dip",m:"Triceps, chest, shoulder stabilisers.",
       s:["Your rung, easiest first: hold at the top on straight arms for 20 s → assisted dip machine → bodyweight dips to shallow depth.","Do the sets at your current rung."],
       k:["Shoulders pushed down, away from your ears.","Stop at any pinch in the front of the shoulder."],sw:"Assisted dip machine."},
@@ -1165,9 +1243,9 @@ var FIGS = (function(){
     catcow:{k:[
       {x:60,y:89,t1:5,t2:30,n:55,a:{h:[93,110],bend:-1},b:{h:[91,110],bend:-1},l:KNEEL_L,r:KNEEL_R},
       {x:60,y:89,t1:42,t2:-8,n:-65,a:{h:[93,110],bend:-1},b:{h:[91,110],bend:-1},l:KNEEL_L,r:KNEEL_R}], seg:1500},
-    openbook:{noGround:true, k:[
-      {x:48,y:76,t1:0,t2:0,n:0,a:[90,90],b:[93,93],l:[90,180,180],r:[86,182,180]},
-      {x:48,y:76,t1:0,t2:0,n:0,a:[90,90],as:-1,b:[93,93],l:[90,180,180],r:[86,182,180]}], seg:1500},
+    openbook:{noGround:true, props:'<rect x="16" y="36" width="128" height="76" rx="5" class="wall"/>', k:[
+      {x:56,y:74,t1:0,t2:0,n:0,a:{e:[90,89],w:[90,104]},b:{e:[92,89],w:[92,104]},l:{k:[58,95],a:[37,95],t:[32,95]},r:{k:[60,93],a:[39,93],t:[34,93]}},
+      {x:56,y:74,t1:0,t2:0,n:0,a:{e:[90,59],w:[90,44]},b:{e:[92,89],w:[92,104]},l:{k:[58,95],a:[37,95],t:[32,95]},r:{k:[60,93],a:[39,93],t:[34,93]}}], seg:1600},
     ninety:{front:true,k:[
       {front:true,w:[7,10],x:80,y:100,t1:90,t2:90,n:90,a:{h:[97,107],bend:1},b:{h:[63,107],bend:-1},
         l:{k:[116,97],a:[109,109],t:[114,109]}, r:{k:[92,90],a:[51,109],t:[46,109]}},
@@ -1214,9 +1292,9 @@ var FIGS = (function(){
     cobrahold:{k:[
       {x:58,y:105,t1:0,t2:2,n:5,a:[180,180],b:[181,181],l:[180,180,200],r:[179,180,200]},
       {x:58,y:105,t1:3,t2:16,n:12,a:[172,170],b:[173,171],l:[180,180,200],r:[179,180,200]}], seg:1500},
-    tib:{props:'<line x1="49" y1="8" x2="49" y2="110" class="post"/>', k:[
-      {x:60,y:69,t1:104,t2:102,n:100,a:[-104,-100],b:[-102,-98],l:{a:[70,109],bend:1,f:-12},r:{a:[69,109],bend:1,f:-12}},
-      {x:60,y:69,t1:104,t2:102,n:100,a:[-104,-100],b:[-102,-98],l:{a:[70,109],bend:1,f:40},r:{a:[69,109],bend:1,f:40}}], seg:900},
+    tib:{props:'<line x1="46" y1="8" x2="46" y2="110" class="post"/>', k:[
+      {x:56,y:70,t1:97,t2:95,n:93,a:[-93,-89],b:[-91,-87],l:{a:[75,107],bend:1,f:-4},r:{a:[74,107],bend:1,f:-4}},
+      {x:56,y:70,t1:97,t2:95,n:93,a:[-93,-89],b:[-91,-87],l:{a:[75,107],bend:1,f:48},r:{a:[74,107],bend:1,f:48}}], seg:900},
     suitcase:{db:["a"], k:[ST(Object.assign({y:69,t1:90,t2:90,a:[-91,-90],b:[-58,-48]},WALK_A)), ST(Object.assign({y:69,t1:90,t2:90,a:[-91,-90],b:[-58,-48]},WALK_B))], seg:800},
     chestcarry:{db:["a"], dbr:4.2, k:[
       ST(Object.assign({y:69,t1:90,t2:89,a:{h:[89,47],bend:-1},b:{h:[88,48],bend:-1}},WALK_A)),
@@ -1227,9 +1305,9 @@ var FIGS = (function(){
     cpr:{props:'<rect x="84" y="94" width="46" height="16" rx="5" class="bench"/>', k:[
       {x:62,y:89,t1:55,t2:55,n:30,a:{h:[88,92],bend:1},b:{h:[87,92],bend:1},l:KNEEL_L,r:KNEEL_R},
       {x:64,y:89,t1:48,t2:46,n:25,a:{h:[88,96],bend:1},b:{h:[87,96],bend:1},l:KNEEL_L,r:KNEEL_R}], seg:270},
-    lsit:{props:'<line x1="70" y1="64.5" x2="124" y2="64.5" class="post"/><line x1="76" y1="64" x2="76" y2="110" class="post"/><line x1="118" y1="64" x2="118" y2="110" class="post"/>', k:[
-      {x:84,y:68,t1:95,t2:92,n:90,a:{h:[90,64],bend:-1},b:{h:[88,64],bend:-1},l:[20,-100,-10],r:[18,-102,-10]},
-      {x:84,y:68,t1:95,t2:92,n:90,a:{h:[90,64],bend:-1},b:{h:[88,64],bend:-1},l:[6,-98,-10],r:[4,-100,-10]}], seg:1600},
+    lsit:{props:'<line x1="54" y1="52.5" x2="134" y2="52.5" class="post"/><line x1="60" y1="52" x2="60" y2="110" class="post"/><line x1="128" y1="52" x2="128" y2="110" class="post"/>', k:[
+      {x:86,y:60,t1:96,t2:95,n:92,a:{h:[96,52],bend:1},b:{h:[94,52],bend:1},l:{k:[90,81],a:[80,95],t:[85,98]},r:{k:[88,81],a:[78,95],t:[83,98]}},
+      {x:86,y:60,t1:96,t2:95,n:92,a:{h:[96,52],bend:1},b:{h:[94,52],bend:1},l:[38,-78,-10],r:[35,-80,-10]}], seg:1600},
     floorstand:{k:[
       {x:66,y:104,t1:90,t2:90,n:90,a:{h:[84,98],bend:1},b:{h:[82,99],bend:1},l:{k:[84,101],a:[70,108],t:[66,109]},r:{k:[82,103],a:[72,108],t:[68,109]}},
       {x:72,y:88,t1:80,t2:78,n:80,a:{h:[90,88],bend:1},b:[-100,-95],l:{a:[92,109],bend:1,f:0},r:{k:[70,110],a:[52,110],t:[46,110]}},
@@ -1335,7 +1413,15 @@ var FIGS = (function(){
   const KG_RE = /^(\d{1,3}(\.\d{1,2})?)?$/;
   // v1.2: moved sessions, short sessions, and the after-session check
   const MOVE_RE = /^move-\d{4}-\d{2}-\d{2}$/, MODE_RE = /^mode-\d{4}-\d{2}-\d{2}$/;
-  const SESS_RE = /^sess-\d{4}-\d{2}-\d{2}-(pain|rpe|mins|note)$/;
+  const SESS_RE = /^sess-\d{4}-\d{2}-\d{2}-(pain|rpe|mins|note|where|ptype)$/;
+  // v1.5: swaps, weight and waist, run details, sleep
+  const SWAP_RE = /^swap-\d{4}-\d{2}-\d{2}-[A-Za-z0-9%._~!*'()-]+$/, BODY_RE = /^body-\d{4}-\d{2}-\d{2}-(wt|waist)$/;
+  const RUN_RE = /^run-\d{4}-\d{2}-\d{2}-(mins|km|hr)$/, SLEEP_RE = /^(sleep|oncall)-\d{4}-\d{2}-\d{2}$/;
+  const DEC_RE = /^(\d{1,3}(\.\d{1,2})?)?$/, HRS_RE = /^(\d{1,2}(\.\d)?)?$/;
+  const PAIN_WHERE = [["lshoulder","Left shoulder"],["rshoulder","Right shoulder"],["elbow","Elbow or wrist"],["neck","Neck"],["back","Lower back"],
+    ["hip","Hip or groin"],["knee","Knee"],["shin","Shin, ankle or foot"],["chest","Chest"],["other","Somewhere else"]];
+  const PAIN_TYPE = [["dull","Dull, both sides, after training"],["sharp","Sharp, in a joint, on one movement"],
+    ["nerve","Shooting, tingling, numb, or down a leg"],["cardiac","Chest pain, palpitations, breathless or dizzy"]];
   // v1.4: per-set log, gym time, skipped days, week mode, cool-down, session clock, day set count, settings
   const SETS_RE = /^sets-\d{4}-\d{2}-\d{2}-[A-Za-z0-9%._~!*'()-]+$/;
   const SETS_VAL = /^(\d{0,3}(\.\d{1,2})?:\d{0,3})(;\d{0,3}(\.\d{1,2})?:\d{0,3}){0,9}$/;
@@ -1354,11 +1440,17 @@ var FIGS = (function(){
       if (DAYK_RE.test(k)) return DAYK_VAL[k.slice(0,k.indexOf("-"))].test(e[0]);
       if (WK_RE.test(k)) return /^[0-3]?$/.test(e[0]);
       if (PREF_RE.test(k)) return /^(quick|full|off)?$/.test(e[0]);
+      if (SWAP_RE.test(k)) return /^1?$/.test(e[0]);
+      if (BODY_RE.test(k)) return DEC_RE.test(e[0]);
+      if (RUN_RE.test(k)) return /-km$/.test(k) ? DEC_RE.test(e[0]) : /^\d{0,3}$/.test(e[0]);
+      if (SLEEP_RE.test(k)) return k.charAt(0)==="s" ? HRS_RE.test(e[0]) : /^1?$/.test(e[0]);
     }
     if (SESS_RE.test(k)){
       if (typeof e[0]!=="string") return false;
       if (/-note$/.test(k)) return e[0].length<=1000;
       if (/-mins$/.test(k)) return /^\d{0,3}$/.test(e[0]);
+      if (/-where$/.test(k)) return e[0]==="" || PAIN_WHERE.some(o=>o[0]===e[0]);
+      if (/-ptype$/.test(k)) return e[0]==="" || PAIN_TYPE.some(o=>o[0]===e[0]);
       return /^(10|\d)?$/.test(e[0]);
     }
     return false;
@@ -1407,7 +1499,8 @@ var FIGS = (function(){
     // Replace the whole log with these entries, stamped now so they win over anything older.
     function replace(entries){
       const t = Date.now(), next = {};
-      for (const k in entries){ const e = entries[k]; if (validEntry(k,e)) next[k]=[e[0],t]; }
+      const ks = Object.keys(entries).filter(k=>validEntry(k,entries[k])).sort((a,b)=>entries[a][1]-entries[b][1]);
+      ks.forEach((k,i)=>{ next[k] = [entries[k][0], t-(ks.length-1-i)]; });
       try{ const rm=[]; for (let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if (TICK_RE.test(k)) rm.push(k); } rm.forEach(k=>localStorage.removeItem(k)); }catch(e){}
       map = next;
       for (const k in map) if (TICK_RE.test(k) && map[k][0]===1) lsSet(k,"1");
@@ -1507,7 +1600,18 @@ var FIGS = (function(){
 
   // Weight logging: every exercise that takes a load. Bodyweight-only work and skill ladders don’t.
   const NO_KG = [D5_MOBILITY[0],"Pull-up ladder, your rung","Dip ladder, your rung","Tuck L-sit on dip bars","Floor to standing, fewest hands","Gentle neck holds","CPR drill"];
-  const loggable = r => NO_KG.indexOf(r[0])<0 && !/^bodyweight(, on a step)?$|back on a wall/.test(r[2]);
+  const loggable = r => NO_KG.indexOf(r[0])<0 && !/^bodyweight(, on a step|, 90 s between)?$|back on a wall/.test(r[2]);
+  const swapKey = (d,name) => "swap-"+key(d)+"-"+encodeURIComponent(name);
+  const bodyKey = (d,id) => "body-"+key(d)+"-"+id;
+  const runKey = (d,id) => "run-"+key(d)+"-"+id;
+  const swText = n => { const e = HT[htKey(n)]; return e && e.sw ? e.sw.replace(/\.$/,"") : "the listed swap"; };
+  // Sleep before a session: "low" = under 5 h or called in, "mid" = 5 to 6 h.
+  function sleepLevel(d){
+    const h = Store.val("sleep-"+key(d)), oc = Store.val("oncall-"+key(d))==="1";
+    if (oc || (h!=="" && +h<5)) return "low";
+    if (h!=="" && +h<=6) return "mid";
+    return "";
+  }
   const loadKey = (d,name) => "load-"+key(d)+"-"+encodeURIComponent(name);
   const fmtKg = n => String(Math.round(n*100)/100);
   // v1.4: per-set log. sets-<day>-<exercise> = "kg:reps;kg:reps;…". A blank kg means “same as the set above”.
@@ -1560,6 +1664,7 @@ var FIGS = (function(){
   }
   let uid = 0;
   function liftsHTML(items,d,w,short,dayN,day){
+    const noUp = short || sleepLevel(d)!=="";
     function row(r,pos){
       const id = "x"+(uid++), k = exKey(d,r[0]), on = Store.get(k);
       // v1.1: the CPR drill’s “2–4 rounds by week” becomes the actual number for this week
@@ -1577,7 +1682,9 @@ var FIGS = (function(){
         const sk = setsKey(d,r[0]), arr = readSets(sk), legacy = kgable ? Store.val(loadKey(d,r[0])) : "";
         const li = lastInfo(r[0],d);
         if (li && (li.done.length || (kgable && li.kg!==null))){
-          const sugg = kgable && li.kg!==null ? (LIGHT[w] ? Math.round(li.kg*0.8*2)/2 : li.kg) : null;
+          const sd = STEP_DOWN[r[0]], stepDown = !!(sd && kgable && li.kg!==null && key(li.d) < sd.before && li.kg > sd.kg);
+          const base = stepDown ? sd.kg : li.kg;
+          const sugg = kgable && li.kg!==null ? (LIGHT[w] ? Math.round(base*0.8*2)/2 : base) : null;
           const sum = li.done.length ? setsText(li.done,info.unit,kgable) : fmtKg(li.kg)+" kg";
           let hint = "";
           if (kgable && !LIGHT[w] && info.unit==="reps" && info.hi && li.done.length){
@@ -1586,6 +1693,8 @@ var FIGS = (function(){
             else if (reps.some(x=>x<info.lo)) hint = "A set fell short of "+info.lo+": stay at this weight, or drop one step.";
             else hint = "Same weight; aim for one more rep per set.";
           }
+          if (stepDown) hint = sd.why;
+          else if (noUp && /go up/.test(hint)) hint = "Short night or short session: same weight today, no increase.";
           const set1 = (arr[0] && arr[0].kg) || legacy;
           last = '<span class="last aux">Last time, '+nice(li.d).replace(/ /g," ")+': '+sum+(LIGHT[w] && sugg!==null ? ". About 80%: "+fmtKg(sugg)+" kg" : "")+
             (sugg!==null && !set1 ? '<button type="button" class="use" data-useset="'+esc(sk)+'" data-kg="'+fmtKg(sugg)+'" data-n="'+n+'">Use '+fmtKg(sugg)+' kg</button>' : '')+
@@ -1608,7 +1717,8 @@ var FIGS = (function(){
       return '<div class="ex'+(on?' on':'')+'"><input type="checkbox" id="'+id+'" data-k="'+esc(k)+'"'+(on?' checked':'')+'>'+
         '<label for="'+id+'" class="box">'+CHECK+'<span class="vh">Done: '+esc(r[0])+'</span></label>'+
         '<button type="button" class="n" data-how="'+esc(r[0])+'" aria-label="'+esc(r[0])+': how to do it">'+r[0].replace(/(\S+)$/,'<span class="nw">$1<span class="qi" aria-hidden="true">?</span></span>')+'</button><label for="'+id+'" class="rx">'+rx+'</label>'+
-        (r[2]?'<label for="'+id+'" class="ld">'+r[2]+'</label>':'')+last+sets+'</div>';
+        (r[2]?'<label for="'+id+'" class="ld">'+r[2]+'</label>':'')+
+        (Store.val(swapKey(d,r[0]))==="1" ? '<span class="swp aux">Did the swap: '+esc(swText(r[0]))+'</span>' : '')+last+sets+'</div>';
     }
     return '<ul class="lifts">'+items.map((it,i)=>{
       if (it.pair) return '<li class="pair"><p class="pair-note">'+(it.note||"Back to back, then rest")+'</p><ul>'+it.pair.map((r,j)=>'<li>'+row(r,{i,first:j===0})+'</li>').join("")+'</ul></li>';
@@ -1644,7 +1754,7 @@ var FIGS = (function(){
   const MOB_DAY = W1(12), RUNTEST_DAY = W1(15);
   const RETEST = {}; RETEST[shKey(2026,11,6)] = true; RETEST[shKey(2027,0,31)] = true;
   const testKey = (d,id) => "test-"+key(d)+"-"+id;
-  const UNIT_PAD = {reps:46,s:24,"of 10":50,cm:34,min:38,bpm:42};
+  const UNIT_PAD = {reps:46,s:24,"of 10":50,cm:34,min:38,bpm:42,kg:32,km:34,h:24};
   function fieldsHTML(d,ids,withRef){
     return '<div class="tests aux">'+ids.map(id=>{
       const f = TF[id], k = testKey(d,id), v = Store.val(k), fid = "f"+(uid++);
@@ -1667,7 +1777,7 @@ var FIGS = (function(){
     }).join("")+'</div>';
   }
   const SF = {
-    pain:{label:"Pain", unit:"of 10", kind:"effort", hint:"0 = none. Sharp, in a joint, or worse than 3: follow “Something hurts” below."},
+    pain:{label:"Pain", unit:"of 10", kind:"effort", hint:"0 = none. 4 or more: say where and what it’s like, and the app shows what to do."},
     rpe: {label:"How hard, overall", unit:"of 10", kind:"effort", hint:"10 = couldn’t have done one more rep or minute."},
     mins:{label:"Time it took", unit:"min", kind:"num"},
     note:{label:"Note", kind:"note"}
@@ -1678,8 +1788,68 @@ var FIGS = (function(){
       const f = SF[id], k = sessKey(d,id), v = Store.val(k), fid = "f"+(uid++);
       const hint = f.hint ? '<span class="tfh" id="'+fid+'h">'+f.hint+'</span>' : '';
       if (f.kind==="note") return '<div class="tf note"><label class="tfl" for="'+fid+'">'+f.label+'</label><textarea id="'+fid+'" rows="3" maxlength="1000" autocomplete="off" data-v="'+k+'" data-kind="note" placeholder="Optional: anything worth telling Claude. Enter starts a new line.">'+esc(v)+'</textarea></div>';
-      return '<div class="tf"><label class="tfl" for="'+fid+'">'+f.label+'</label><span class="kgf" style="grid-row:1"><input id="'+fid+'" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" maxlength="'+(f.kind==="effort"?2:3)+'" data-v="'+k+'" data-kind="'+f.kind+'" value="'+esc(v)+'"'+(hint?' aria-describedby="'+fid+'h"':'')+' style="padding-right:'+UNIT_PAD[f.unit]+'px"><span class="u" aria-hidden="true">'+f.unit+'</span></span>'+hint+'</div>';
+      return '<div class="tf"><label class="tfl" for="'+fid+'">'+f.label+'</label><span class="kgf" style="grid-row:1"><input id="'+fid+'" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" maxlength="'+(f.kind==="effort"?2:3)+'" data-v="'+k+'" data-kind="'+f.kind+'" value="'+esc(v)+'"'+(hint?' aria-describedby="'+fid+'h"':'')+' style="padding-right:'+UNIT_PAD[f.unit]+'px"><span class="u" aria-hidden="true">'+f.unit+'</span></span>'+hint+(id==="pain" ? painxHTML(d) : '')+'</div>';
     }).join("")+'</div>';
+  }
+  // v1.5: pain 4 or more asks where and what it’s like, then shows the matching “Something hurts” rule.
+  const PAIN_RULE = {
+    dull:["var(--rest)","Normal soreness. Train, lighter if it’s bad."],
+    sharp:["var(--food)","Swap that exercise next time (tap its name for the swap). Still there next session: tell Claude."],
+    nerve:["var(--run)","Stop that movement today and tell Claude."],
+    cardiac:["var(--ink)","Stop now and sit down. If it doesn’t settle within a few minutes at rest, or comes with sweating or fainting, get an ECG and urgent review, and don’t drive yourself. Even if it settles: no training until it’s been assessed (Charaka)."]};
+  const optLabel = (opts,v) => (opts.find(o=>o[0]===v)||["",v])[1];
+  function chipsHTML(k,opts,label,extra){
+    const v = Store.val(k);
+    return '<p class="tg">'+label+'</p><div class="chips" role="group" aria-label="'+label+'">'+opts.map(o=>'<button type="button" data-v="'+k+'" data-val="'+o[0]+'"'+(extra||'')+' aria-pressed="'+(v===o[0])+'">'+o[1]+'</button>').join("")+'</div>';
+  }
+  function painRuleHTML(d){
+    const w = Store.val(sessKey(d,"where")), t = Store.val(sessKey(d,"ptype"));
+    if (!t) return '<p class="movenote">Pick what it’s like to see what to do.</p>';
+    const r = PAIN_RULE[t];
+    return '<p class="rule" style="--c:'+r[0]+'"><b>What to do:</b> '+r[1]+'</p>'+
+      (w==="chest" && t!=="cardiac" ? '<p class="rule" style="--c:var(--ink)"><b>Inside the chest rather than a sore muscle?</b> '+PAIN_RULE.cardiac[1]+'</p>' : '');
+  }
+  function painxHTML(d){
+    const p = Store.val(sessKey(d,"pain"));
+    return '<div class="painx" data-d="'+key(d)+'"'+(p!=="" && +p>=4 ? '' : ' hidden')+'>'+chipsHTML(sessKey(d,"where"),PAIN_WHERE,"Where is it?")+
+      chipsHTML(sessKey(d,"ptype"),PAIN_TYPE,"What is it like?")+'<div class="prule">'+painRuleHTML(d)+'</div></div>';
+  }
+  function refreshPain(){
+    document.querySelectorAll("#flow .painx").forEach(box=>{
+      const d = fromKey(box.dataset.d), p = Store.val(sessKey(d,"pain"));
+      box.hidden = !(p!=="" && +p>=4);
+      box.querySelector(".prule").innerHTML = painRuleHTML(d);
+    });
+  }
+  // One labelled number field. kind: num (whole), kg (up to 2 decimals), hrs (1 decimal).
+  function numRow(k,label,unit,kind,maxlen,hint){
+    const v = Store.val(k), fid = "f"+(uid++);
+    return '<div class="tf"><label class="tfl" for="'+fid+'">'+label+'</label><span class="kgf" style="grid-row:1"><input id="'+fid+'" type="text" inputmode="'+(kind==="num"?"numeric":"decimal")+'" enterkeyhint="done" autocomplete="off" maxlength="'+maxlen+'" data-v="'+k+'" data-kind="'+kind+'" value="'+esc(v)+'" style="padding-right:'+(UNIT_PAD[unit]||34)+'px"><span class="u" aria-hidden="true">'+unit+'</span></span>'+
+      (hint ? '<span class="tfh">'+hint+'</span>' : '')+'</div>';
+  }
+  function bodyHTML(d){
+    return '<div class="tests aux">'+numRow(bodyKey(d,"wt"),"Weight","kg","kg",6,"After the toilet, before food.")+numRow(bodyKey(d,"waist"),"Waist at the navel","cm","kg",5,"After breathing out.")+'</div>';
+  }
+  function bodyStep(d){
+    const has = Store.val(bodyKey(d,"wt")) || Store.val(bodyKey(d,"waist"));
+    return step("c-note aux","Weight or waist","optional",'<details class="bodylog"'+(has?' open':'')+'><summary>Log today’s weight or waist</summary>'+bodyHTML(d)+'</details>');
+  }
+  function runHTML(d,withHR,walk){
+    return '<div class="tests aux">'+numRow(runKey(d,"mins"),walk?"Walked":"Ran","min","num",3)+numRow(runKey(d,"km"),"Distance","km","kg",5)+
+      (withHR ? numRow(runKey(d,"hr"),"Average heart rate","bpm","num",3) : '')+'</div>';
+  }
+  function sleepAdvice(d,s,short){
+    const lvl = sleepLevel(d), oc = Store.val("oncall-"+key(d))==="1";
+    if (lvl==="low") return '<div class="advice red"><p class="a"><b>'+(oc?"Called in overnight":"Under 5 hours")+':</b> '+
+      (s.type==="long" ? "walk instead of the run today: same time, easy pace." : "2 sets of everything at the same weights. Walk instead of running.")+'</p>'+
+      (s.type==="gym" ? (short ? '<span class="movenote">Short session is on.</span>' : '<button type="button" class="btn sm" data-act2="short">Switch to Short session</button>') : '')+'</div>';
+    if (lvl==="mid") return '<div class="advice"><p class="a"><b>5 to 6 hours:</b> train as planned, but no weight increases and no strides.</p></div>';
+    return '<p class="movenote">Under 5 hours, or called in overnight: the app suggests a Short session.</p>';
+  }
+  function sleepHTML(d,s,short){
+    return '<div class="tests aux">'+numRow("sleep-"+key(d),"Hours slept last night","h","hrs",4)+'</div>'+
+      '<div class="chips"><button type="button" data-v="oncall-'+key(d)+'" data-val="1" data-rerender="1" aria-pressed="'+(Store.val("oncall-"+key(d))==="1")+'">Called in overnight</button></div>'+
+      '<div class="sleepadv" data-d="'+key(d)+'">'+sleepAdvice(d,s,short)+'</div>';
   }
   function retestHTML(d){
     return [["Strength",T_STRENGTH],["CPR",T_CPR],["Mobility",T_MOB],["Run",T_RUN]]
@@ -1695,12 +1865,14 @@ var FIGS = (function(){
   function step(cls,title,meta,body,extra){
     return '<li class="step '+cls+'"><div class="step-b"><h2>'+title+(extra||"")+'</h2>'+(meta?'<span class="meta">'+meta+'</span>':'')+body+'</div></li>';
   }
-  function morningsStep(){
-    return step("c-note","Mornings this week","Tue, Wed, Thu","<p>Weigh yourself after the toilet, before food. Measure your waist at the navel after breathing out.</p>");
+  function morningsStep(d){
+    return step("c-note","Mornings this week","Tue, Wed, Thu","<p>Weigh yourself after the toilet, before food. Measure your waist at the navel after breathing out.</p>"+bodyHTML(d));
   }
 
   // v1.2: the log line reports only what was actually recorded. Nothing is assumed: no default “done”, no default pain.
   let logBase = "", logFields = [], logEx = [], logRetest = false, logTicks = [], logSess = false, logDay = null, logKind = "", logCool = false;
+  let logSwaps = [], logRun = "", logBody = false;
+  const pace = (mins,km) => { const p = (+mins)/(+km); if (!isFinite(p) || p<=0 || !+mins) return ""; let mm = Math.floor(p), ss = Math.round((p-mm)*60); if (ss===60){ mm++; ss = 0; } return mm+":"+pad(ss)+" /km"; };
   function fullLog(){
     if (!logBase) return "";
     const d = logDay, k = key(d), done = Store.get("done-"+k), skipped = Store.val("skip-"+k)==="1";
@@ -1714,10 +1886,27 @@ var FIGS = (function(){
     if (logSess){
       const sv = id => Store.val(sessKey(d,id));
       const p = sv("pain"), r = sv("rpe"), mi = sv("mins"), nt = sv("note");
-      lines.push((p!=="" ? "Pain "+p+"/10" : "Pain not recorded")+(r!=="" ? ", effort "+r+"/10" : "")+(mi!=="" ? ", "+mi+" min" : ""));
+      const sh = Store.val("sleep-"+k), oc = Store.val("oncall-"+k)==="1";
+      const sl = sh!=="" ? "Sleep "+sh+" h"+(oc ? ", called in overnight" : "")+", " : oc ? "Called in overnight, " : "";
+      const pw = sv("where"), pt = sv("ptype");
+      const pd = p!=="" && +p>=4 ? [pw && optLabel(PAIN_WHERE,pw).toLowerCase(), pt && optLabel(PAIN_TYPE,pt).toLowerCase()].filter(Boolean).join("; ") : "";
+      lines.push(sl+(p!=="" ? (sl?"pain ":"Pain ")+p+"/10"+(pd ? " ("+pd+")" : "") : (sl?"pain ":"Pain ")+"not recorded")+(r!=="" ? ", effort "+r+"/10" : "")+(mi!=="" ? ", "+mi+" min" : ""));
       if (logCool && (done || Store.val("cool-"+k))) lines.push(Store.val("cool-"+k)==="1" ? "Cool-down done" : "Cool-down not ticked");
       if (nt) lines.push("Note: "+nt);
-      if (logKind==="long") lines.push("Samsung screenshot to follow");
+    }
+    if (logRun){
+      const rv = id => Store.val(runKey(d,id)), parts = [];
+      if (rv("mins")) parts.push(rv("mins")+" min");
+      if (rv("km")) parts.push(rv("km")+" km");
+      const pc = rv("mins") && rv("km") ? pace(rv("mins"),rv("km")) : "";
+      if (pc) parts.push(pc);
+      if (rv("hr")) parts.push("avg HR "+rv("hr"));
+      lines.push(logRun+": "+(parts.length ? parts.join(", ") : "not recorded"+(logKind==="long" ? ", Samsung screenshot to follow" : "")));
+    }
+    if (logBody){
+      const bw = Store.val(bodyKey(d,"wt")), bz = Store.val(bodyKey(d,"waist"));
+      const b = [bw && "weight "+bw+" kg", bz && "waist "+bz+" cm"].filter(Boolean).join(", ");
+      if (b) lines.push(b.charAt(0).toUpperCase()+b.slice(1));
     }
     const t = logFields.map(([d,id])=>{ const v = Store.val(testKey(d,id)); return v ? TF[id].log(v) : null; }).filter(Boolean);
     if (t.length) lines.push((logRetest ? "Retest: " : "Tests: ")+t.join(", "));
@@ -1727,6 +1916,8 @@ var FIGS = (function(){
       return r[0]+" "+setsText(done,info.unit,kgable)+(done.length<n ? " ("+done.length+" of "+n+" sets)" : "");
     }).filter(Boolean);
     if (sl.length) lines.push("Sets:\n"+sl.join("\n"));
+    const sw = logSwaps.filter(([x,n])=>Store.val(swapKey(x,n))==="1").map(([x,n])=>n+" → "+swText(n));
+    if (sw.length) lines.push("Swapped: "+sw.join("; "));
     return lines.join("\n");
   }
   function refreshLog(){ $("logText").textContent = fullLog(); $("logline").hidden = !logBase; }
@@ -1774,7 +1965,7 @@ var FIGS = (function(){
     }).join("")+'</ul>';
   }
   const guideBtn = (kind,label,mins) => '<button type="button" class="btn sm" data-guide="'+kind+'">▶ '+label+', '+mins+' min</button>';
-  const clockBtn = d => (Store.val("clock-"+key(d)) || Store.get("done-"+key(d))) ? "" : '<button type="button" class="btn sm" data-clock="1">Start session clock</button>';
+  const clockBtn = d => (clockMins(d)!==null || Store.get("done-"+key(d)) || dn(d)!==dn(today())) ? "" : '<button type="button" class="btn sm" data-clock="1">Start session clock</button>';
   function warmStep(d,day){
     const full = Store.val("pref-warm")==="full", g = full ? WARM_FULL : warmQuick(day);
     return step("c-lift","Warm up",(full?"Full, ":"Quick, ")+gMins(g)+" min",
@@ -1801,7 +1992,9 @@ var FIGS = (function(){
       '<tr><th>Hard</th><td>A few words only. Effort 7–8 of 10. Only the 20-s strides, after the screening.</td></tr></table>'+
       '<p class="aux" style="font-size:14px;margin-top:6px">Treadmill numbers are a starting point; heart rate decides. Over 135? Slow down or walk. Don’t hold the handrails.</p></details></div>';
   }
-  const clockMins = d => { const v = Store.val("clock-"+key(d)); return v ? Math.max(0,Math.floor((Date.now()-(+v))/6e4)) : null; };
+  // A clock left running (never marked done) stops counting after 4 hours instead of showing “1,440 min”.
+  const CLOCK_MAX = 240;
+  const clockMins = d => { const v = Store.val("clock-"+key(d)); if (!v) return null; const m = Math.floor((Date.now()-(+v))/6e4); return (m<0 || m>CLOCK_MAX) ? null : m; };
   function clockTag(d){
     const m = clockMins(d);
     if (m===null || Store.get("done-"+key(d))) return "";
@@ -1819,6 +2012,7 @@ var FIGS = (function(){
     const tags = [], flow = [];
     let title="", kind="", lede="";
     logBase = ""; logFields = []; logEx = []; logRetest = false; logTicks = []; logSess = false; logDay = d; logKind = ""; logCool = false;
+    logSwaps = []; logRun = ""; logBody = false;
     // Week 1 weigh-ins: the original only showed this on the Thursday rest day; it now appears on each of the three mornings it names.
     const weekOneMorning = (w===1 && (d.getDay()===2 || d.getDay()===3 || d.getDay()===4));
 
@@ -1827,6 +2021,7 @@ var FIGS = (function(){
       lede = "Nothing to train today. Walk, eat protein, sleep.";
       flow.push(step("c-rest","Walk","30–40 min","<p>Easy pace. Get to "+stepsFloor+" steps.</p>"+runGuide("walk")));
       flow.push(step("c-food","Eat","","<p>Protein 120 g or more across the day. No milkshakes or sugary drinks.</p>"));
+      flow.push(bodyStep(d));
     } else if (s.type==="travel"){
       title = "Before the start"; kind = "Program starts "+nice(START);
       lede = "No sessions yet. Just keep moving.";
@@ -1848,13 +2043,15 @@ var FIGS = (function(){
       if (s.type==="gym" || s.type==="long") tags.push("<li>"+fmtT(hm(gt))+"</li>");
       tags.push("<li>Steps "+stepsFloor+"+</li>");
       if (isSession(s)) tags.push(clockTag(d));
-      if (weekOneMorning) flow.push(morningsStep());
+      if (weekOneMorning){ flow.push(morningsStep(d)); logBody = true; }
 
       if (s.type==="gym"){
         const L0 = L[s.day], items = s.plus ? L0.items.concat([Object.assign({note:"Added in a 3-day week. Back to back, then rest"},D2_PLUS)]) : L0.items;
-        const nv = Store.val("nset-"+key(d)), dayN = nv ? +nv : (LIGHT[w] || short ? 2 : 0);
+        // A lighter week or a short session is always 2 sets; “Full” can’t override it.
+        const forced2 = !!(LIGHT[w] || short), dayN = (forced2 || Store.val("nset-"+key(d))==="2") ? 2 : 0;
         lede = s.run ? "Lift first, then the run. Or run first if it stays easy and under 30 minutes." : "One session, done in under 70 minutes with full rests.";
         const food = foodSteps(d,gt);
+        flow.push(step("c-note","Last night’s sleep","sets today’s mode",sleepHTML(d,s,short)));
         flow.push(food.pre);
         flow.push(warmStep(d,s.day));
         if (s.test){
@@ -1870,7 +2067,9 @@ var FIGS = (function(){
         flow.push(step("c-lift",L0.name,meta,
           "<p>"+rest+(w===1 && /^D[1-4]$/.test(s.day)?" Week 1: the three lifts you’ve logged before at about 85%.":"")+(short?" Short session: 2 sets of everything, no weight increases.":"")+"</p>"+
           '<p class="aux">Every rep through the full range you can control. Tap an exercise name for how to do it.'+(FILL[s.day] ? ' '+FILL[s.day]+' <button type="button" class="use" data-how="'+FILL_HOW[s.day]+'">How</button>' : '')+'</p>'+
-          '<div class="steprow aux"><span class="tl" style="font-size:15px;color:var(--ink-3)">Sets today</span><span class="seg" role="group" aria-label="Sets today"><button type="button" data-nset="3" aria-pressed="'+!two+'">Full</button><button type="button" data-nset="2" aria-pressed="'+two+'">2 each</button></span>'+
+          '<div class="steprow aux"><span class="tl" style="font-size:15px;color:var(--ink-3)">Sets today</span>'+
+          (forced2 ? '<span style="font-size:15px;font-weight:600">2 each: '+(LIGHT[w] ? "lighter week" : "short session")+'</span>'
+                   : '<span class="seg" role="group" aria-label="Sets today"><button type="button" data-nset="3" aria-pressed="'+!two+'">Full</button><button type="button" data-nset="2" aria-pressed="'+two+'">2 each</button></span>')+
           '<button type="button" class="minibtn" data-autorest="1" aria-pressed="'+autoOn+'">Auto rest: '+(autoOn?"on":"off")+'</button></div>'+
           '<p class="movenote aux">Log kg and reps for each set as you go. A blank kg counts as the set above. Leave a set blank if you skipped it.</p>'+
           timerRow()+liftsHTML(items,d,w,short,dayN,s.day),
@@ -1880,24 +2079,27 @@ var FIGS = (function(){
           flow.push(step("c-note","CPR baseline","","<p>One 2-minute round at 110 a minute. Note effort out of 10 and whether your elbows stayed locked.</p>"+fieldsHTML(od,["cprEffort","cprElbows"])));
         }
         flat(items).forEach(r=>{ const info = rxInfo(r); if (info) logEx.push([d,r,loggable(r),info,dayN ? Math.min(info.n,dayN) : info.n]); });
-        flat(items).forEach(r=>logTicks.push(exKey(d,r[0])));
+        flat(items).forEach(r=>{ logTicks.push(exKey(d,r[0])); logSwaps.push([d,r[0]]); });
         if (s.day==="D2" && FIN[w] && !short){
           const f = FIN[w];
           flow.push(step("c-run aux","Stamina finisher","8 min, only once the screening is reviewed and clear",
             "<p>Three rounds at a moderate pace: breathing hard, still able to say a sentence. Rest 60 s after each round. Skip it in Short mode or after a bad night.</p>"+
             moveList(FIN_ROUNDS[f].map(x=>[x,0]),false).replace(/<i>0 s<\/i>/g,"")));
         }
-        if (s.run && short) flow.push(step("c-run","Walk instead of the run","20–30 min","<p>Short session: an easy walk replaces today’s run. No strides.</p>"+runGuide("walk")));
-        else if (s.run) flow.push(step("c-run","Easy run",EASY[w],"<p>Talking pace, heart rate under about 135."+(s.strides?" Finish with 4 × 20 s relaxed fast strides, only once the screening is reviewed and clear. Clear means you’ve gone through the ECG, BP, lipids, HbA1c, Lp(a) and sleep screen and nothing changes the plan; any symptom on exertion overrides it.":"")+"</p>"+runGuide(/walk/.test(EASY[w]) ? "rw" : "run")));
+        if (s.run && short){ logRun = "Walk"; flow.push(step("c-run","Walk instead of the run","20–30 min","<p>Short session: an easy walk replaces today’s run. No strides.</p>"+runGuide("walk")+runHTML(d,false,true))); }
+        else if (s.run){ logRun = "Run"; flow.push(step("c-run","Easy run",EASY[w],"<p>Talking pace, heart rate under about 135."+(s.strides ? (sleepLevel(d) ? " No strides today: short night." : " Finish with 4 × 20 s relaxed fast strides, only once the screening is reviewed and clear. Clear means you’ve gone through the ECG, BP, lipids, HbA1c, Lp(a) and sleep screen and nothing changes the plan; any symptom on exertion overrides it.") : "")+"</p>"+runGuide(/walk/.test(EASY[w]) ? "rw" : "run")+runHTML(d,true,false))); }
         flow.push(coolStep(d,COOL_G,"cool"));
         flow.push(food.post);
         flow.push(step("c-note","After the session","30 seconds","<p>Fill in what applies. Blanks are reported as not recorded.</p>"+sessHTML(d)));
+        if (!weekOneMorning){ flow.push(bodyStep(d)); logBody = true; }
         logBase = TAG[s.day]+(s.run && !short ? " + run" : s.run ? " + walk" : "")+(short ? " (short)" : "")+(s.from ? " (moved from "+nice(od)+")" : "");
         logKind = "gym"; logSess = true; logCool = true;
       } else if (s.type==="long"){
         lede = s.test ? "This sets your running plan. Slow is correct." : "Alone, never the day after Day 4. Slow is correct.";
+        flow.push(step("c-note","Last night’s sleep","decides run or walk",sleepHTML(d,s,false)));
         flow.push(step("c-run","Warm up",gMins(WARM_RUN_G)+" min",moveList(WARM_RUN_G,true)+'<div class="steprow">'+guideBtn("warmrun","Guided warm-up",gMins(WARM_RUN_G))+'</div>'));
-        const runFields = (key(od)===RUNTEST_DAY) ? (T_RUN.forEach(id=>logFields.push([od,id])), fieldsHTML(od,T_RUN)) : "";
+        const runFields = (key(od)===RUNTEST_DAY) ? (T_RUN.forEach(id=>logFields.push([od,id])), fieldsHTML(od,T_RUN)+runHTML(d,false,false)) : runHTML(d,true,false);
+        logRun = "Run";
         flow.push(step("c-run", s.test?"Run test":"Long run", LONG[w], "<p>Talking pace, heart rate under about 135. Walk breaks are fine. Lit route, light-coloured top."+(w>=9?" Take water"+(w>=11?", and a banana or dates at 45 minutes":"")+".":"")+"</p>"+runGuide(/run-walk/.test(LONG[w]) ? "rw" : "run")+runFields));
         flow.push(coolStep(d,COOL_LONG_G,"coollong"));
         if (RETEST[key(od)]){
@@ -1906,7 +2108,10 @@ var FIGS = (function(){
         }
         flow.push(step("c-note","After the run","30 seconds","<p>Fill in what applies. Blanks are reported as not recorded.</p>"+sessHTML(d)));
         flow.push(step("c-food","Eat after","","<p>Protein-first meal. "+(w>=9?"A sweet drink is fine after an hour-plus run.":"No sugary drinks needed for this one.")+"</p>"));
-        flow.push(step("c-note","Weekly check-in","3 questions",'<ol class="qs"><li>Which sessions did you do?</li><li>Any pain, or a change in an old one?</li><li>Anything else changed: schedule, gym, weight?</li></ol>'));
+        flow.push(step("c-note","Weekly check-in","3 questions, weigh-in, backup",'<ol class="qs"><li>Which sessions did you do?</li><li>Any pain, or a change in an old one?</li><li>Anything else changed: schedule, gym, weight?</li></ol>'+
+          '<p class="sub">Weekly weigh-in</p>'+bodyHTML(d)+
+          '<div class="steprow"><button type="button" class="btn sm" data-backup="1">Share backup for Claude</button></div><p class="aux" style="font-size:15px">Send the backup file with your answers in a Fitness chat.</p>'));
+        logBody = true;
         logBase = (s.test ? "Run test" : "Long run")+(s.from ? " (moved from "+nice(od)+")" : "");
         logKind = "long"; logSess = true; logCool = true;
       } else if (s.type==="sat"){
@@ -1916,7 +2121,8 @@ var FIGS = (function(){
         flow.push(step("c-lift","Day 5, only if free","45 min, no heavy legs","<p>Long run tomorrow. Tap an exercise name for how to do it.</p>"+liftsHTML(d5,d,w,false,0,"D5"),'<span class="count" data-total="'+total+'"></span>'));
         flow.push(step("c-food","Eat","","<p>Protein 120 g or more. No liquid calories.</p>"));
         flat(L.D5.items).forEach(r=>{ const info = rxInfo(r); if (info) logEx.push([d,r,loggable(r),info,info.n]); });
-        flat(d5).forEach(r=>logTicks.push(exKey(d,r[0])));
+        flat(d5).forEach(r=>{ logTicks.push(exKey(d,r[0])); logSwaps.push([d,r[0]]); });
+        flow.push(bodyStep(d)); logBody = true;
         logBase = "Saturday"; logKind = "d5";
       } else {
         lede = s.dropped ? "Not in this week’s plan. Move, eat protein, sleep." : "Recovery is part of the plan. Move, eat protein, sleep.";
@@ -1930,14 +2136,16 @@ var FIGS = (function(){
         flow.push(step("c-rest aux","Mobility flow","15 min on a mat, at home","<p>Slow and easy, no bouncing. Breathe out as you sink into each position. Tap a move to see how.</p>"+
           moveList(FLOW_G.map(x=>[x[0],x[1],x[2]]),false).replace(/<i>[^<]*<\/i>/g,"")+'<div class="steprow">'+guideBtn("flow","Guided flow",gMins(FLOW_G))+'</div>'));
         flow.push(step("c-food","Eat","","<p>Protein 120 g or more across the day. Walk 10 minutes after your biggest meal. No milkshakes or sugary drinks.</p>"));
+        flow.push(bodyStep(d)); if (logBase) logBody = true;
       }
     }
 
     $("dayTitle").textContent = title;
     $("kind").textContent = kind;
     $("lede").textContent = lede;
-    $("tags").innerHTML = tags.join("");
-    $("tags").hidden = !tags.length;
+    const tg = tags.filter(Boolean);
+    $("tags").innerHTML = tg.join("");
+    $("tags").hidden = !tg.length;
     const ms = MS[key(d)];
     $("milestone").innerHTML = ms ? '<p class="milestone"><b>Key date, '+ms.d+'</b>'+ms.t+'</p>' : "";
     $("flow").innerHTML = flow.join("");
@@ -2107,6 +2315,114 @@ var FIGS = (function(){
     $("dates").innerHTML = DATES.map(x=>'<li><button type="button" data-k="'+x.k+'" aria-label="'+esc(longDate(fromKey(x.k))+": "+x.t)+'"><span class="dd" aria-hidden="true">'+x.d+'</span><span class="dx" aria-hidden="true">'+x.t+'</span></button></li>').join("");
   }
 
+  /* ---------- v1.5: progress view ---------- */
+  const NAME_RX = {};
+  Object.keys(L).forEach(dk=>flat(L[dk].items).forEach(r=>{ if (!NAME_RX[r[0]]) NAME_RX[r[0]] = r; }));
+  flat([D2_PLUS]).forEach(r=>{ if (!NAME_RX[r[0]]) NAME_RX[r[0]] = r; });
+  let progEx = "";
+  function spark(vals,label){
+    if (vals.length<2) return "";
+    const W = 300, H = 64, p = 8, mn = Math.min.apply(null,vals), mx = Math.max.apply(null,vals);
+    const pts = vals.map((v,i)=>[p+(W-2*p)*i/(vals.length-1), H-p-(mx===mn ? .5 : (v-mn)/(mx-mn))*(H-2*p)]);
+    return '<svg class="spark" viewBox="0 0 '+W+' '+H+'" aria-hidden="true">'+
+      '<polyline points="'+pts.map(q=>q[0].toFixed(1)+","+q[1].toFixed(1)).join(" ")+'"/>'+pts.map(q=>'<circle cx="'+q[0].toFixed(1)+'" cy="'+q[1].toFixed(1)+'" r="3"/>').join("")+'</svg>'+
+      '<p class="empty">'+label+': '+vals[0]+' → '+vals[vals.length-1]+' (lowest '+mn+', highest '+mx+')</p>';
+  }
+  function exHistory(name){
+    const r = NAME_RX[name] || [name,"",""], info = rxInfo(r), unit = info ? info.unit : "reps", kgable = NAME_RX[name] ? loggable(r) : true;
+    const enc = "-"+encodeURIComponent(name), m = Store.entries(), days = {};
+    for (const k in m){ const p = k.slice(0,5); if ((p==="sets-" || p==="load-") && k.slice(15)===enc) days[k.slice(5,15)] = 1; }
+    return Object.keys(days).sort().map(day=>{
+      const lv = Store.val("load-"+day+enc), done = doneSets(parseSets(Store.val("sets-"+day+enc)), kgable ? lv : "");
+      const kgs = done.map(x=>parseFloat(x.kg)).filter(isFinite);
+      if (!kgs.length && lv) kgs.push(parseFloat(lv));
+      const txt = done.length ? setsText(done,unit,kgable) : lv ? lv+" kg, sets not logged" : "";
+      return {day, txt:txt+(Store.val("swap-"+day+enc)==="1" ? " (swap)" : ""), top:kgs.length ? Math.max.apply(null,kgs) : null, reps:done.reduce((t,x)=>t+(+x.r||0),0)};
+    }).filter(x=>x.txt);
+  }
+  function renderProgress(){
+    const el = $("progBody"); if (!el) return;
+    const m = Store.entries(), names = {}, body = {}, runs = {};
+    for (const k in m){
+      const v = m[k][0]; if (v==="" || typeof v!=="string") continue;
+      const p = k.slice(0,5);
+      if (p==="sets-" || p==="load-"){
+        if (p==="sets-" && !parseSets(v).some(x=>x.r!=="" || x.kg!=="")) continue;
+        let n; try{ n = decodeURIComponent(k.slice(16)); }catch(e){ continue; }
+        const day = k.slice(5,15); if (!names[n] || names[n] < day) names[n] = day;
+      } else if (p==="body-"){ const day = k.slice(5,15); (body[day] = body[day] || {})[k.slice(16)] = v; }
+      else if (k.slice(0,4)==="run-"){ const day = k.slice(4,14); (runs[day] = runs[day] || {})[k.slice(15)] = v; }
+    }
+    const list = Object.keys(names).sort((a,b)=>a.localeCompare(b));
+    if (!progEx || !names[progEx]) progEx = list.slice().sort((a,b)=>names[b].localeCompare(names[a]))[0] || "";
+    let h = '<h3 class="sub2">Exercises</h3>';
+    if (!list.length) h += '<p class="empty">Nothing logged yet. Log kg and reps for each set during a session.</p>';
+    else {
+      const hist = exHistory(progEx), tops = hist.map(x=>x.top).filter(x=>x!==null);
+      h += '<label class="vh" for="progSel">Exercise</label><select id="progSel">'+list.map(n=>'<option value="'+esc(n)+'"'+(n===progEx?' selected':'')+'>'+esc(n)+'</option>').join("")+'</select>';
+      // Same top weight every time: the rep total shows the progress instead.
+      const flatKg = tops.length>=2 && tops.every(x=>x===tops[0]);
+      h += tops.length>=2 && !flatKg ? spark(tops,"Top kg") : (hist.length>=2 ? spark(hist.map(x=>x.reps),"Total reps") : "");
+      h += '<table class="ptable"><thead><tr><th>Date</th><th>Sets</th></tr></thead><tbody>'+
+        hist.slice().reverse().slice(0,12).map(x=>'<tr><td>'+nice(fromKey(x.day))+'</td><td>'+esc(x.txt)+'</td></tr>').join("")+'</tbody></table>';
+    }
+    const cols = [["Week 1",null],["Retest",shKey(2026,11,6)],["Final",shKey(2027,0,31)]];
+    const rows = TF_ALL.map(id=>{
+      const f = TF[id], vals = cols.map(c=>{ const v = Store.val("test-"+(c[1]||REF[id])+"-"+id); return v ? (f.opts ? optLabel(f.opts,v) : v+" "+f.unit) : "–"; });
+      return vals.some(x=>x!=="–") ? '<tr><th scope="row">'+f.label+'</th>'+vals.map(x=>'<td>'+esc(x)+'</td>').join("")+'</tr>' : "";
+    }).join("");
+    h += '<h3 class="sub2">Tests</h3>'+(rows ? '<table class="ptable"><thead><tr><th>Test</th>'+cols.map(c=>'<th>'+c[0]+'</th>').join("")+'</tr></thead><tbody>'+rows+'</tbody></table>'
+      : '<p class="empty">No test numbers yet.</p>');
+    const bd = Object.keys(body).sort();
+    h += '<h3 class="sub2">Weight and waist</h3>';
+    if (!bd.length) h += '<p class="empty">Log them on the week 1 mornings, at Sunday’s check-in, or under “Weight or waist” on any day.</p>';
+    else {
+      const wts = bd.filter(x=>body[x].wt).map(x=>+body[x].wt);
+      h += spark(wts,"Weight in kg")+'<table class="ptable"><thead><tr><th>Date</th><th>Weight</th><th>Waist</th></tr></thead><tbody>'+
+        bd.slice().reverse().slice(0,10).map(x=>'<tr><td>'+nice(fromKey(x))+'</td><td>'+(body[x].wt ? body[x].wt+" kg" : "–")+'</td><td>'+(body[x].waist ? body[x].waist+" cm" : "–")+'</td></tr>').join("")+'</tbody></table>';
+    }
+    const rd = Object.keys(runs).filter(x=>runs[x].mins || runs[x].km || runs[x].hr).sort();
+    h += '<h3 class="sub2">Runs and walks</h3>';
+    if (!rd.length) h += '<p class="empty">Enter minutes, distance and heart rate under the run on the day.</p>';
+    else h += '<table class="ptable"><thead><tr><th>Date</th><th>Time</th><th>km</th><th>Pace</th><th>HR</th></tr></thead><tbody>'+
+      rd.slice().reverse().slice(0,10).map(x=>{ const r = runs[x]; return '<tr><td>'+nice(fromKey(x))+'</td><td>'+(r.mins ? r.mins+" min" : "–")+'</td><td>'+(r.km||"–")+'</td><td>'+((r.mins && r.km && pace(r.mins,r.km)) || "–")+'</td><td>'+(r.hr||"–")+'</td></tr>'; }).join("")+'</tbody></table>';
+    el.innerHTML = h;
+  }
+  $("progBody").addEventListener("change",e=>{ if (e.target.id==="progSel"){ progEx = e.target.value; renderProgress(); const s2 = $("progSel"); if (s2) s2.focus(); } });
+
+  /* ---------- v1.5: exercise library ---------- */
+  function renderLibrary(){
+    const used = {};
+    const add = (label,where)=>{ const k = htKey(label); if (!k) return; used[k] = used[k] || []; if (used[k].indexOf(where)<0) used[k].push(where); };
+    ["D1","D2","D3","D4","D5","A","B","ONE"].forEach(dk=>flat(L[dk].items).forEach(r=>add(r[0],L[dk].name)));
+    add(D5_MOBILITY[0],"Day 5");
+    WARM_FULL.forEach(x=>add(x[0],"Warm-up")); WARM_RUN_G.forEach(x=>add(x[0],"Run warm-up"));
+    COOL_G.forEach(x=>add(x[0],"Cool-down")); COOL_LONG_G.forEach(x=>add(x[0],"Cool-down")); FLOW_G.forEach(x=>add(x[0],"Mobility flow"));
+    FIN_ROUNDS.F1.concat(FIN_ROUNDS.F2).forEach(x=>add(x,"Day 2 finisher"));
+    Object.keys(FILL_HOW).forEach(dk=>add(FILL_HOW[dk],"Between sets"));
+    const groups = [["Exercises",k=>HT[k].c!=="w" && HT[k].c!=="s"],["Warm-up moves",k=>HT[k].c==="w"],["Stretches and mobility",k=>HT[k].c==="s"]];
+    const keys = Object.keys(HT).sort((a,b)=>a.localeCompare(b));
+    $("libList").innerHTML = groups.map(([g,fn])=>{
+      const ks = keys.filter(fn);
+      return '<div class="libg"><h3 class="sub2">'+g+' <span class="cnt" style="font-weight:400;color:var(--ink-3)">('+ks.length+')</span></h3><ul class="liblist">'+ks.map(k=>{
+        const t = k.replace(" (warm-up)",""), u = (used[k]||[]).join(", "), first = HT[k].m.split(/\. /)[0].replace(/\.$/,"");
+        return '<li data-q="'+esc(normN(t+" "+HT[k].m+" "+u+" "+(HT[k].sw||"")))+'"><button type="button" class="libitem" data-how="'+esc(k)+'"><b>'+esc(t)+'</b><span>'+(u ? esc(u)+" · " : "")+esc(first)+'</span></button></li>';
+      }).join("")+'</ul></div>';
+    }).join("")+'<p class="empty" id="libNone" hidden>Nothing matches. Try another word.</p>';
+  }
+  function filterLib(){
+    const q = normN($("libQ").value).trim().split(/\s+/).filter(Boolean);
+    let any = false;
+    document.querySelectorAll("#libList .libg").forEach(g=>{
+      let n = 0;
+      g.querySelectorAll("li").forEach(li=>{ const ok = q.every(w=>li.dataset.q.indexOf(w)>=0); li.hidden = !ok; if (ok) n++; });
+      g.hidden = !n; if (n) any = true; g.querySelector(".cnt").textContent = "("+n+")";
+    });
+    $("libNone").hidden = any;
+  }
+  $("libQ").addEventListener("input",filterLib);
+  $("libList").addEventListener("click",e=>{ const b = e.target.closest("button[data-how]"); if (b) openHowto(b.dataset.how); });
+
   // Rebuilt with the chrome so the buttons follow “done” and other changes straight away.
   // v1.4: a missed session in the last 3 days gets a card on today’s page: did it, skipped it, or do it today.
   function missedDay(){
@@ -2154,9 +2470,10 @@ var FIGS = (function(){
     document.querySelectorAll("#flow input[data-sk]").forEach(i=>{ if (i!==a){ const x = readSets(i.dataset.sk)[+i.dataset.i]; i.value = x ? x[i.dataset.f] : ""; } });
     document.querySelectorAll("#flow .sets").forEach(refreshSets);
     document.querySelectorAll("#flow button[data-val]").forEach(b=>b.setAttribute("aria-pressed", String(Store.val(b.dataset.v)===b.dataset.val)));
-    renderChrome();
+    refreshPain(); refreshSleep();
+    renderChrome(); renderProgress();
   }
-  function render(){ MV = null; renderDay(); renderChrome(); }
+  function render(){ MV = null; renderDay(); renderChrome(); renderProgress(); }
 
   function go(d,opts){
     view = strip0(d);
@@ -2193,7 +2510,7 @@ var FIGS = (function(){
       updateCounts(); refreshLog();
       return;
     }
-    if (c.matches("[data-v]")) commitField(c,true);
+    if (c.matches("[data-v]")){ commitField(c,true); if (/^sleep-/.test(c.dataset.v)) rerenderSoon(); }
     if (c.matches("input[data-sk]")) commitSet(c,true);
     if (c.matches("input[data-time]")){ if (/^([01]\d|2[0-3]):[0-5]\d$/.test(c.value)){ Store.setVal(c.dataset.time, c.value); render(); } return; }
     if (c.matches("input[data-cool]")){ Store.setVal(c.dataset.cool, c.checked ? "1" : ""); refreshLog(); renderDoneBar(); return; }
@@ -2213,18 +2530,29 @@ var FIGS = (function(){
       if (t.dataset.f==="kg"){ const r = t.closest(".setrow").querySelector('input[data-f="r"]'); if (r) r.focus(); } else t.blur();
     }
   });
+  // Re-draw the day after a change that alters the plan, unless you’ve already moved on to type in another field.
+  function keepScroll(f){ const y = window.scrollY; f(); window.scrollTo(0,y); }
+  function rerenderSoon(){
+    setTimeout(()=>{ const a = document.activeElement;
+      if (a && a.closest && a.closest("#flow") && /^(INPUT|TEXTAREA)$/.test(a.tagName)) return;
+      keepScroll(()=>{ renderDay(); renderChrome(); }); },0);
+  }
+  function refreshSleep(){
+    document.querySelectorAll("#flow .sleepadv").forEach(el=>{ const d = fromKey(el.dataset.d), s = slot(d); el.innerHTML = sleepAdvice(d,s,s.type==="gym" && Store.val("mode-"+key(d))==="short"); });
+  }
   function commitField(c,final){
     const kind = c.dataset.kind;
     if (kind==="note"){ const t = c.value.slice(0,1000); if (final && c.value!==t.trim()) c.value = t.trim(); Store.setVal(c.dataset.v, final ? t.trim() : t); refreshLog(); return; }
-    let v = c.value.replace(/,/g,".").replace(kind==="kg" ? /[^\d.]/g : /\D/g, "");
+    let v = c.value.replace(/,/g,".").replace(kind==="kg" || kind==="hrs" ? /[^\d.]/g : /\D/g, "");
     if (final){
       if (kind==="kg"){ const n = parseFloat(v); v = isNaN(n) ? "" : fmtKg(Math.min(n,999.99)); }
+      else if (kind==="hrs"){ const n = parseFloat(v); v = isNaN(n) ? "" : String(Math.round(Math.min(n,24)*10)/10); }
       else if (kind==="effort" && v!=="") v = String(Math.min(10,parseInt(v,10)));
       else if (v!=="") v = String(parseInt(v,10));
     }
     if (v!==c.value) c.value = v;
-    const re = kind==="kg" ? KG_RE : kind==="effort" ? /^(10|\d)?$/ : /^\d{0,3}$/;
-    if (re.test(v)){ Store.setVal(c.dataset.v, v); refreshLog(); }
+    const re = kind==="kg" ? KG_RE : kind==="hrs" ? HRS_RE : kind==="effort" ? /^(10|\d)?$/ : /^\d{0,3}$/;
+    if (re.test(v)){ Store.setVal(c.dataset.v, v); refreshLog(); refreshPain(); refreshSleep(); }
   }
   /* ---- v1.4: per-set inputs ---- */
   function commitSet(inp,final){
@@ -2257,7 +2585,7 @@ var FIGS = (function(){
     if (c && !c.checked && n && logged>=n){ c.checked = true; Store.set(c.dataset.k,true); ex.classList.add("on"); updateCounts(); }
   }
   function afterSet(inp){
-    if (!Store.val("clock-"+key(view)) && !Store.get("done-"+key(view))) startClock(true);
+    if (clockMins(view)===null && !Store.get("done-"+key(view)) && dn(view)===dn(today())) startClock(true);
     const sec = +inp.dataset.rest;
     if (sec && Store.val("pref-autorest")!=="off") Timer.start(sec);
   }
@@ -2267,7 +2595,7 @@ var FIGS = (function(){
     const b = document.querySelector("#flow button[data-clock]"); if (b) b.remove();
     if (!quiet) toast("Session clock started. Aim to finish within 70 minutes.");
   }
-  setInterval(()=>{ const el = $("clockTag"); if (!el) return; const m = clockMins(view); if (m===null) return;
+  setInterval(()=>{ const el = $("clockTag"); if (!el) return; const m = clockMins(view); if (m===null){ el.remove(); return; }
     el.textContent = clockText(m); el.className = "clock"+(m>=70?" over":m>=60?" warn":""); }, 20000);
   function setsBtn(b){
     const sk = b.dataset.addset || b.dataset.rmset, rows = +b.dataset.rows, n = +b.dataset.n, arr = readSets(sk);
@@ -2283,7 +2611,11 @@ var FIGS = (function(){
 
   $("flow").addEventListener("click",e=>{
     const hw = e.target.closest("[data-how]");
-    if (hw){ openHowto(hw.dataset.how); return; }
+    if (hw){ openHowto(hw.dataset.how, hw.closest(".ex") ? {d:view, name:hw.dataset.how} : null); return; }
+    const bk = e.target.closest("button[data-backup]");
+    if (bk){ $("exportBtn").click(); return; }
+    const s2 = e.target.closest("button[data-act2]");
+    if (s2){ Store.setVal("mode-"+key(view),"short"); keepScroll(render); toast("Short session: 2 sets, same weights, walk not run"); return; }
     const sbn = e.target.closest("button[data-addset],button[data-rmset]");
     if (sbn){ setsBtn(sbn); return; }
     const us = e.target.closest("button[data-useset]");
@@ -2316,7 +2648,9 @@ var FIGS = (function(){
       const k = sb.dataset.v, nv = Store.val(k)===sb.dataset.val ? "" : sb.dataset.val;
       Store.setVal(k,nv);
       sb.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.val===nv)));
-      refreshLog(); return;
+      refreshLog(); refreshPain();
+      if (sb.dataset.rerender) keepScroll(()=>{ renderDay(); renderChrome(); });
+      return;
     }
     const ub = e.target.closest("button[data-use]");
     if (ub){
@@ -2343,54 +2677,66 @@ var FIGS = (function(){
       try{ (n===1?[0]:[0,.28]).forEach(t0=>{ const o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=880; o.connect(g); g.connect(ctx.destination);
         const t=ctx.currentTime+t0; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.2,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.2); o.start(t); o.stop(t+0.22); }); }catch(e){}
     }
-    async function wake(on){ try{ if (on && navigator.wakeLock && !lock) lock = await navigator.wakeLock.request("screen"); else if (!on && lock){ await lock.release(); lock = null; } }catch(e){ lock = null; } }
-    function tick(){ const left = end-Date.now(); $("rtN").textContent = fmt(left); if (left<=0) (seq ? nextItem() : finish()); }
-    function show(label,stopTxt,plusTxt){
-      const el = $("rt"); el.hidden = false; el.classList.remove("over"); el.classList.toggle("seq",!!seq);
-      $("rtL").textContent = label; $("rtL").tabIndex = seq ? 0 : -1; $("rtStop").textContent = stopTxt; $("rtPlus").textContent = plusTxt;
-      $("rtPlus").setAttribute("aria-label", seq ? "Next move" : "Add 15 seconds");
-      document.body.classList.add("timing");
+    async function wake(on){ try{ if (on && navigator.wakeLock && !lock){ lock = await navigator.wakeLock.request("screen"); lock.addEventListener("release",()=>{ lock = null; }); } else if (!on && lock){ const l = lock; lock = null; await l.release(); } }catch(e){ lock = null; } }
+    // v1.5: after the screen was locked, move on by the time that actually passed, not by one move.
+    function tick(){
+      const now = Date.now();
+      if (seq && now >= end){
+        while (seq && now >= end){
+          si++;
+          if (si>=seq.length){ const f = onDone; seq = null; finish("Done. Well done."); if (f) f(); return; }
+          end += seq[si].secs*1000;
+        }
+        beep(1); try{ if (navigator.vibrate) navigator.vibrate(150); }catch(e){}
+        showItem(); live(seq[si].label+", "+seq[si].secs+" seconds");
+      } else if (!seq && now >= end){ finish(); return; }
+      $("rtN").textContent = fmt(end-now);
     }
+    function show(label,isSeq){
+      const el = $("rt"); el.hidden = false; el.classList.remove("over"); el.classList.toggle("seq",isSeq);
+      $("rtL").textContent = label; $("rtL").tabIndex = isSeq ? 0 : -1; $("rtStop").textContent = "Stop"; $("rtPlus").textContent = "+15 s";
+      $("rtPlus").setAttribute("aria-label", isSeq ? "Give this move 15 seconds more" : "Add 15 seconds");
+      $("rtNext").hidden = !isSeq;
+      document.body.classList.add("timing"); document.body.classList.toggle("seqing",isSeq);
+    }
+    function showItem(){ show((si+1)+"/"+seq.length+" · "+seq[si].label, true); }
     function start(sec){
       clearTimeout(hideT); clearInterval(iv); seq = null;
       end = Date.now()+sec*1000;
-      show("Rest","Stop","+15 s");
+      show("Rest",false);
       audio(); wake(true);
       iv = setInterval(tick,250); tick();
       live("Rest timer started, "+(sec>=120 ? sec/60+" minutes" : sec+" seconds"));
-    }
-    function runItem(){
-      const it = seq[si];
-      end = Date.now()+it.secs*1000;
-      show((si+1)+"/"+seq.length+" · "+it.label,"Stop","Next");
-      tick(); live(it.label+", "+it.secs+" seconds");
     }
     function startSeq(items,done){
       clearTimeout(hideT); clearInterval(iv);
       seq = items; si = 0; onDone = done || null;
       audio(); wake(true);
-      runItem(); iv = setInterval(tick,250);
+      end = Date.now()+seq[0].secs*1000; showItem(); live(seq[0].label+", "+seq[0].secs+" seconds");
+      iv = setInterval(tick,250); tick();
     }
     function nextItem(){
       if (!seq) return;
       si++;
       if (si>=seq.length){ const f = onDone; seq = null; finish("Done. Well done."); if (f) f(); return; }
       beep(1); try{ if (navigator.vibrate) navigator.vibrate(150); }catch(e){}
-      runItem();
+      end = Date.now()+seq[si].secs*1000; showItem(); live(seq[si].label+", "+seq[si].secs+" seconds"); tick();
     }
     function finish(msg){
       clearInterval(iv); iv = null; seq = null;
-      $("rt").classList.add("over"); $("rt").classList.remove("seq"); $("rtL").textContent = msg || "Rest over"; $("rtN").textContent = "0:00"; $("rtStop").textContent = "Close"; $("rtPlus").textContent = "+15 s";
+      $("rt").classList.add("over"); $("rt").classList.remove("seq"); $("rtNext").hidden = true; document.body.classList.remove("seqing");
+      $("rtL").textContent = msg || "Rest over"; $("rtN").textContent = "0:00"; $("rtStop").textContent = "Close"; $("rtPlus").textContent = "+15 s"; $("rtPlus").setAttribute("aria-label","Add 15 seconds");
       beep(); try{ if (navigator.vibrate) navigator.vibrate([200,100,200]); }catch(e){}
       live(msg || "Rest over"); wake(false);
       hideT = setTimeout(stop, 10000);
     }
-    function stop(){ clearInterval(iv); iv = null; seq = null; clearTimeout(hideT); $("rt").hidden = true; $("rt").classList.remove("seq"); document.body.classList.remove("timing"); wake(false); }
-    function plus(){ if (seq){ nextItem(); return; } if (!iv){ start(15); return; } end += 15000; tick(); }
+    function stop(){ clearInterval(iv); iv = null; seq = null; clearTimeout(hideT); $("rt").hidden = true; $("rt").classList.remove("seq"); $("rtNext").hidden = true; document.body.classList.remove("timing","seqing"); wake(false); }
+    function plus(){ if (!iv){ start(15); return; } end += 15000; tick(); }
     $("rtStop").addEventListener("click",stop);
     $("rtPlus").addEventListener("click",plus);
+    $("rtNext").addEventListener("click",nextItem);
     $("rtL").addEventListener("click",()=>{ if (seq && seq[si]) openHowto(seq[si].how); });
-    document.addEventListener("visibilitychange",()=>{ if (iv && document.visibilityState==="visible") tick(); });
+    document.addEventListener("visibilitychange",()=>{ if (iv && document.visibilityState==="visible"){ tick(); if (iv) wake(true); } });
     return {start,startSeq,stop};
   })();
   // [label, seconds, both sides] → timer items; one item per side.
@@ -2403,10 +2749,10 @@ var FIGS = (function(){
     const d = view, s = slot(d);
     const g = kind==="warm" ? (Store.val("pref-warm")==="full" ? WARM_FULL : warmQuick(s.day)) : kind==="warmrun" ? WARM_RUN_G :
       kind==="cool" ? COOL_G : kind==="coollong" ? COOL_LONG_G : FLOW_G;
-    if ((kind==="warm" || kind==="warmrun") && !Store.val("clock-"+key(d)) && !Store.get("done-"+key(d)) && isSession(s)) startClock(true);
+    if ((kind==="warm" || kind==="warmrun") && clockMins(d)===null && !Store.get("done-"+key(d)) && isSession(s) && dn(d)===dn(today())) startClock(true);
     const cool = kind==="cool" || kind==="coollong";
     Timer.startSeq(guideItems(g), cool ? ()=>{ if (dn(view)===dn(d)){ Store.setVal("cool-"+key(d),"1"); const c = document.querySelector("#flow input[data-cool]"); if (c) c.checked = true; refreshLog(); updateCounts(); } } : null);
-    toast("Tap the move’s name in the bar to see how. Next skips ahead.");
+    toast("Tap the move’s name to see how. +15 s gives it longer; Next skips ahead.");
   }
 
   /* ---------- v1.4: how-to sheet ---------- */
@@ -2421,18 +2767,18 @@ var FIGS = (function(){
     return picsP;
   }
   let stopFig = null, htOpen = false;
-  function openHowto(label){
+  function openHowto(label,ctx){
     const hk = htKey(label), e = hk && HT[hk], dlg = $("howto");
     if (!e){ toast("No how-to for that one yet. Ask Claude in the Fitness project."); return; }
     const title = hk.replace(" (warm-up)","");
     const q = encodeURIComponent(title+" exercise form");
     $("htBody").innerHTML = '<header><h2 id="htTitle">'+esc(title)+'</h2><button type="button" class="x" data-htclose aria-label="Close">✕</button></header>'+
-      '<div class="media'+(e.pic?'':' fig')+'" id="htMedia"></div>'+(e.cap ? '<p class="cap">'+e.cap+'</p>' : '')+
+      '<div class="media'+(e.pic?'':' fig')+'" id="htMedia"></div><div class="steprow" id="htBoth"></div>'+(e.cap ? '<p class="cap">'+e.cap+'</p>' : '')+
       (e.dose ? '<p class="dose">'+e.dose+'</p>' : '')+
       '<h3>What it works</h3><p>'+e.m+'</p><h3>How to do it</h3><ol>'+e.s.map(x=>'<li>'+x+'</li>').join("")+'</ol>'+
       '<h3>Keep in mind</h3><ul>'+e.k.map(x=>'<li>'+x+'</li>').join("")+'</ul>'+
       '<h3>Breathing</h3><p>'+BREATH[e.c||"i"]+'</p>'+
-      (e.sw ? '<h3>Machine busy, or it hurts?</h3><p>'+e.sw+'</p>' : '')+
+      (e.sw ? '<h3>Machine busy, or it hurts?</h3><p>'+e.sw+'</p>'+(ctx ? swapBtnHTML(swapKey(ctx.d,ctx.name)) : '') : '')+
       (e.links ? '<div class="links">'+e.links.map(x=>'<button type="button" class="btn sm" data-how="'+esc(x)+'">'+esc(x)+'</button>').join("")+'</div>' : '')+
       '<a class="btn vid" href="https://www.youtube.com/results?search_query='+q+'" target="_blank" rel="noopener">Watch a video (needs internet)</a>'+
       (e.pic ? '<p class="credit">Photo: Free Exercise DB, public domain.</p>' : '');
@@ -2445,7 +2791,12 @@ var FIGS = (function(){
         if ($("htMedia")!==media) return;
         const p = ok && window.EX_PICS[e.pic];
         if (!p){ if (e.fig && FIGS[e.fig]) drawFig(); else media.innerHTML = '<p class="cap" style="padding:12px">The picture didn’t load. Open the app once with internet.</p>'; return; }
-        media.innerHTML = '<img src="'+p[0]+'" alt="'+esc(title)+', start position">'+(p[1] ? '<img class="b" src="'+p[1]+'" alt="'+esc(title)+', end position">' : '');
+        media.innerHTML = '<img src="'+p[0]+'" alt="'+esc(title)+', start position">'+(p[1] ? '<img class="b" src="'+p[1]+'" alt="'+esc(title)+', end position"><span class="fl a" aria-hidden="true">Start</span><span class="fl b" aria-hidden="true">End</span>' : '');
+        if (p[1]){
+          const both = reduce();
+          media.classList.toggle("both",both);
+          $("htBoth").innerHTML = '<button type="button" class="minibtn" data-both aria-pressed="'+both+'">Start and end side by side</button>';
+        }
       });
     } else if (e.fig && FIGS[e.fig]) drawFig();
     else media.hidden = true;
@@ -2455,6 +2806,10 @@ var FIGS = (function(){
       if (!htOpen){ htOpen = true; try{ history.pushState({howto:1},""); }catch(err){} }
     }
     dlg.scrollTop = 0;
+  }
+  function swapBtnHTML(k){
+    const on = Store.val(k)==="1";
+    return '<div class="swapbox"><button type="button" class="btn sm" data-swap="'+esc(k)+'" aria-pressed="'+on+'">'+(on ? "✓ Swap logged for today. Tap to undo" : "I did this swap today")+'</button></div>';
   }
   function closeHowto(fromPop){
     const dlg = $("howto"); if (!dlg.open) return;
@@ -2466,6 +2821,16 @@ var FIGS = (function(){
   }
   $("howto").addEventListener("click",e=>{
     if (e.target===$("howto") || e.target.closest("[data-htclose]")){ closeHowto(); return; }
+    const bb = e.target.closest("button[data-both]");
+    if (bb){ const m = $("htMedia"), on = !m.classList.contains("both"); m.classList.toggle("both",on); bb.setAttribute("aria-pressed",String(on)); return; }
+    const sw = e.target.closest("button[data-swap]");
+    if (sw){
+      const k = sw.dataset.swap, on = Store.val(k)!=="1";
+      Store.setVal(k, on ? "1" : "");
+      sw.outerHTML = swapBtnHTML(k).replace(/^<div class="swapbox">|<\/div>$/g,"");
+      keepScroll(()=>{ renderDay(); renderChrome(); });
+      toast(on ? "Swap logged. It shows on the exercise and in the log line." : "Swap removed"); return;
+    }
     const b = e.target.closest("button[data-how]"); if (b) openHowto(b.dataset.how);
   });
   $("howto").addEventListener("cancel",e=>{ e.preventDefault(); closeHowto(); });
@@ -2487,7 +2852,12 @@ var FIGS = (function(){
       Store.setVal(k, on ? "" : "1"); render();
       toast(on ? "Not skipped" : "Logged as skipped. Do it today, move it, or just carry on with the plan."); return;
     }
-    if (act==="mdone"){ Store.set("done-"+b.dataset.k, true); Store.setVal("skip-"+b.dataset.k, ""); render(); toast(nice(fromKey(b.dataset.k))+" marked done"); return; }
+    if (act==="mdone"){
+      Store.set("done-"+b.dataset.k, true); Store.setVal("skip-"+b.dataset.k, "");
+      go(fromKey(b.dataset.k),{scrollToDay:true});
+      toast(nice(fromKey(b.dataset.k))+" marked done. Add the sets and the after-session check below if you remember them.");
+      return;
+    }
     if (act==="mskip"){ Store.setVal("skip-"+b.dataset.k, "1"); render(); toast(nice(fromKey(b.dataset.k))+" logged as skipped"); return; }
     if (act==="today" || act==="mtoday"){
       const from = act==="today" ? view : fromKey(b.dataset.k), r = moveTo(from, today());
@@ -2535,6 +2905,7 @@ var FIGS = (function(){
 
   document.addEventListener("keydown",e=>{
     if (e.altKey||e.ctrlKey||e.metaKey) return;
+    if ($("howto").open) return;
     const a = document.activeElement, tag = a && a.tagName;
     if (tag==="INPUT"||tag==="TEXTAREA"||tag==="SELECT"||(a&&a.isContentEditable)) return;
     if (a && a.closest && a.closest("#cal")) return;
@@ -2553,7 +2924,7 @@ var FIGS = (function(){
 
   /* ---------- helpers ---------- */
   let tt;
-  function toast(m){ const el=$("toast"); el.textContent=m; el.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("show"),2200); }
+  function toast(m){ const el=$("toast"); el.textContent=m; el.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("show"),Math.min(6000,Math.max(2200,m.length*55))); }
   async function copyText(t){
     try{ if (navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(t); return true; } }catch(e){}
     try{
@@ -2764,7 +3135,7 @@ var FIGS = (function(){
   $("ver").textContent = "App version "+APP_VERSION;
   $("progDates").textContent = START.getDate()+" "+MON[START.getMonth()]+" to "+END.getDate()+" "+MON[END.getMonth()];
   renderStart();
-  buildCal(); renderDates(); render(); setStatus();
+  buildCal(); renderDates(); renderLibrary(); render(); setStatus();
   if (isDesk()) document.querySelectorAll(".rules-grid details").forEach(d=>d.open=true);
   initSync();
 
